@@ -52,7 +52,7 @@ All the **code** in this tutorial can be found here:
 
 ## Contributing
 
-- If you'd like to contribute to this lab, report a bug or issue, please feel free to submit a Pull-Request to the [GitHub repo](https://github.com/microsoft/FabConRTITutorial/) for us to review or [submit Issues](https://github.com/microsoft/FabConRTITutorial/issues) you encounter.
+- If you'd like to contribute to this lab, report a bug or issue, please feel free to submit a Pull-Request to the [GitHub repo](https://github.com/centricconsulting/Fabric-in-a-day/) for us to review or [submit Issues](https://github.com/centricconsulting/Fabric-in-a-day/issues) you encounter.
 
 ---
 
