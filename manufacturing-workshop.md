@@ -163,25 +163,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 ---
 
-## The Manufacturing Company
 
-#todo
-
-The Manufacturing Company database entities are:
-
-- **Product:** the product catalogue.
-- **ProductCategory:** the product categories.
-- **events:** a click or impression event.
-
-  - An **impression event** is logged when a product appears in the search results.
-
-    ![Impressions](assets/store1.png)
-
-  - A **click event** is logged when the product is clicked and the customer has viewed the details.
-
-    ![Clicks](assets/store2.png)
-
----
 
 ## Architecture
 
@@ -193,40 +175,6 @@ Real-Time Intelligence allows organizations to ingest, process, analyze and, que
 
 Using Real-Time Intelligence enables faster, more accurate decision-making and accelerated time to insight.
 
-
-### Tables
-#todo
-| Table                 | Origin           | Description                                                                                                                                                                                                                                 |
-| --------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **bronze_oeedata**      | Eventhouse table | Streaming events representing the product being seen or clicked by the customer. Will be streamed into Fabric Eventhouse from an eventstream. We'll use a Fabric Notebook to simulate and push synthetic data (fake data) into an endpoint. |
-| **bronze_workorderhistory** | Eventhouse table | Streaming events representing the product being seen or clicked by the customer. Will be streamed into Fabric Eventhouse from an eventstream. We'll use a Fabric Notebook to simulate and push synthetic data (fake data) into an endpoint. |
-| **bronze_anamolyhistory**      | EventHouse table | Table created based on an update policy with   |                                                                                                                                                                    |
-| **bronze_downtimehistory** | EventHouse table | Table created based on an update policy with  |
-| **bronze_scraphistory**    | EventHouse table | Table created xxxxxxx |                                                                                                                                                                    
-
-### External Tables
-
-| Table               | Origin                              | Description                                  |
-| ------------------- | ----------------------------------- | -------------------------------------------- |
-| **Product**         | **Shortcut** to OneLake delta table | Products, including descriptions and prices. |
-| **ProductCategory** | **Shortcut** to OneLake delta table | Product category.                            |
-
-### Transformation Functions
-
-| Function                  | Description                                                                 |
-| ------------------------- | --------------------------------------------------------------------------- |
-| **expandClickpath**       | Expands JSON array of dictonaries to transform into strongly typed columns. |
-| **expandRelatedProducts** | Expands JSON array of dictonaries to transform into strongly typed columns  |
-
-### Functions as Views
-
-| View                               | Origin                   | Description                                                                 |
-| ---------------------------------- | ------------------------ | --------------------------------------------------------------------------- |
-| **SocialMediaCampaignClickstream** | Eventhouse gold function | Function showing clickstream originating due to social media campaigns      |
-| **SearchMediaCampaignClickstream** | Eventhouse gold function | Function showing clickstream originating due to campaigns on search engines |
-| **EmailCampaignClickstream**       | Eventhouse gold function | Function showing clickstream originating due to email campaigns             |
-
----
 
 ## Pre-requisites
 
