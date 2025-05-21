@@ -193,28 +193,16 @@ Real-Time Intelligence allows organizations to ingest, process, analyze and, que
 
 Using Real-Time Intelligence enables faster, more accurate decision-making and accelerated time to insight.
 
-## Lab Architecture
-
-![Architectural Diagram](assets/architecture.png "Architecture Diagram")
-
-Now with Data Activator (Reflex), we can also set alerts on Real-time Dashboards to send a message in Teams with conditional thresholds or even more advanced actions.
-
----
-
-## Data schema
-
-### Data flow
-#todo
-![MRD](assets/mrd.png)
 
 ### Tables
 #todo
 | Table                 | Origin           | Description                                                                                                                                                                                                                                 |
 | --------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **BronzeClicks**      | Eventhouse table | Streaming events representing the product being seen or clicked by the customer. Will be streamed into Fabric Eventhouse from an eventstream. We'll use a Fabric Notebook to simulate and push synthetic data (fake data) into an endpoint. |
-| **BronzeImpressions** | Eventhouse table | Streaming events representing the product being seen or clicked by the customer. Will be streamed into Fabric Eventhouse from an eventstream. We'll use a Fabric Notebook to simulate and push synthetic data (fake data) into an endpoint. |
-| **SilverClicks**      | EventHouse table | Table created based on an update policy with **transformed data**.                                                                                                                                                                          |
-| **SilverImpressions** | EventHouse table | Table created based on an update policy with **transformed data**.                                                                                                                                                                          |
+| **bronze_oeedata**      | Eventhouse table | Streaming events representing the product being seen or clicked by the customer. Will be streamed into Fabric Eventhouse from an eventstream. We'll use a Fabric Notebook to simulate and push synthetic data (fake data) into an endpoint. |
+| **bronze_workorderhistory** | Eventhouse table | Streaming events representing the product being seen or clicked by the customer. Will be streamed into Fabric Eventhouse from an eventstream. We'll use a Fabric Notebook to simulate and push synthetic data (fake data) into an endpoint. |
+| **bronze_anamolyhistory**      | EventHouse table | Table created based on an update policy with   |                                                                                                                                                                    |
+| **bronze_downtimehistory** | EventHouse table | Table created based on an update policy with  |
+| **bronze_scraphistory**    | EventHouse table | Table created xxxxxxx |                                                                                                                                                                    
 
 ### External Tables
 
@@ -292,26 +280,8 @@ If you need a new Trial Tenant to complete the lab, suggest to register a new Ou
 ### 2. Fabric Workspace
 
 1. Click **Workspaces** on the left menu and open the Fabric Workspace **designated** to your login by the Fabric Trial Tenant.
-2. (Optional) If using your own Fabric Tenant, create a new workspace for this lab.
 
-3. To create a new Workspace click on **Workspaces** in the left pane and then click on **+ New Workspace** in the popup window.
 
-   ![alt text](assets/image_task02_step01.png)
-
-4. Enter `RTI Tutorial` as name for the new Workspace. Then extend **Advanced**
-
-   ![alt text](assets/image_task02_step02.png)
-
-<div class="info" data-title="Note">
-  
-> If the name that you would like to use for your workspace is still available this will be shown below the input box for **Name**. Workspace Names have to be unique in a Fabric tenant.
-</div>
-
-3. Check if the option **Trial** is checked. If so click on **Apply**.
-
-   ![alt text](assets/image_task02_step03.png)
-
-   After you clicked on **Apply** the workspace will be created. This can take up to a minute. The workspace will be opened automatically.
 
 ### 3. Create a new Eventhouse
 
@@ -323,9 +293,9 @@ If you need a new Trial Tenant to complete the lab, suggest to register a new Ou
 
    ![alt text](assets/image_task03_step02.png)
 
-3. In the dialog **New Eventhouse** insert `WebEvents_EH` as name and click on **Create**
+3. In the dialog **New Eventhouse** insert `OEE_EH` as name and click on **Create**
 
-   ![alt text](assets/image_task03_step03.png)
+   ![alt text](Manufacturing_Assets/3-1%20Create%20Eventhouse.png)
 
    After the Eventhouse has been created it will be automatically opened.
 
@@ -344,13 +314,13 @@ When activated it will constantly copy the KQL data to your Fabric OneLake in de
 
 #### Here's how to set this up
 
-1. When an Eventhouse is created, a KQL Database with the same name is created as well. To open the KQL Database click on the Database **WebEvents_EH** in the section **KQL Databases**.
+1. When an Eventhouse is created, a KQL Database with the same name is created as well. To open the KQL Database click on the Database **OEE_EH** in the section **KQL Databases**.
 
-   ![alt text](assets/image_task04_step01.png)
+   ![alt text](Manufacturing_Assets/3.3%20KQL%20Database%20OneLake%20Availability.png)
 
 2. After selecting the KQL Database click on the switch **availibility** to activate the OneLake availibility as shown in the screenshot.
 
-   ![alt text](assets/image_task04_step02.png)
+   ![alt text](Manufacturing_Assets/3.3%20KQL%20OneLake%20Availability.png)
 
    <div class="info" data-title="Note">
 
@@ -368,140 +338,52 @@ In this section we will be streaming events (impressions and clicks events) gene
 
 ![alt text](assets/fabrta73.png)
 
-1. Select your Workspace in the left pane. In our example it is **RTI Tutorial**. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you. Then click on **+ New Item**. In the popout window scroll a little bit down and select **Eventstream**.
+1. Select your Workspace in the left pane. In our example it is **Fabric_Manufacturing_Demo**. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you. Then click on **+ New Item**. In the popout window scroll a little bit down and select **Eventstream**.
 
-   ![alt text](assets/image_task05_step01.png)
+   ![alt text](Manufacturing_Assets/3%20Create%20Eventstream.png)
 
-2. Give the Eventstream the name `LitmusOEEData`.  
+2. Give the Eventstream the name `oeedata_es`.  
 Then select **Create**.
 
-   ![alt text](Manufacturing_Assets/LitmussOEEDataEventStream.png)
+   ![alt text](Manufacturing_Assets/3%20Create%20OEEData%20Stream.png)
 
 
-3. On the Screen **Design a flow to ingest, transform, and route streaming events** click on **Use Custom Endpoint**. This will create an event hub connected to the Eventstream.
+3. On the Screen **Design a flow to ingest, transform, and route streaming events** click on **Connect Data Source**. This will allow us to our eventhub deployed to Azure which Litmos is routing data to.
 
-   ![alt text](assets/image_task05_step03.png)
+   ![alt text](Manufacturing_Assets/3%20ES%20Connect%20Data%20Sources.png)
 
-4. Insert `WebEventsCustomSource` as the source name and the click on **Add**.
+4. On this screen will select `Azure Event Hubs` as the source type to select click on **Connect**.
 
-   ![alt text](assets/image_task05_step04.png)
+   ![alt text](Manufacturing_Assets/3%20Connect%20to%20EventHub.png)
 
-5. Click on **Publish**.
+5. We will then need to create a new connection to our event hub in Azure.  To do this select **New Connection**.
 
-   ![alt text](assets/image_task05_step05.png)
+   ![alt text](Manufacturing_Assets/3%20New%20EventHub%20Connection.png)
 
-   Now the Eventstream will be published and the Event Hub will be created.
+6. We then need to provide connection details for our EventHub.  For our demo you will place **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus** in the Event Hub space.
+   Once set, select the connect button.
 
-6. To get the information we need for the Notebook, the name of the event hub and a connection string click on the Eventstream source named **WebEventsCustomSource**. In the area below the diagram click on **Keys**. Then click on the copy icon besides the **Event hub name**. Now the event hub name is copied to the clipborad.
+   ![alt text](Manufacturing_Assets/3%20EventHub%20Connection%20Settings.png)
 
-   ![alt text](assets/image_task05_step06.png)
+   Now the Eventstream will be published.
 
-<div class="info" data-title="Note">
-  
->  The easiest way to record the needed values is to just copy them to a notepad window for later reference.
-</div>
+7. After connecting, you should go to the eventstream editor.  Here we will want to do an intial publish to activate the stream.  This will allow us to work with the data as it's streamed in.  To publish hit the **Publish** button in the top right of the screen. 
 
-7. To copy the connection string you first have to click on the view icon. After the connection string is revealed click on the copy icon and copy the connection string to Notepad as well.
+   ![alt text](Manufacturing_Assets/3%20oeedata_es%20inital%20publish.png)
 
-   ![alt text](assets/image_task05_step07.png)
-
-<div class="info" data-title="Note">
-
-> It does not matter if you copy the primary or secondary connection string.
-
-</div>
-
-<div class="important" data-title="Note">
-
-> To copy the connection string it must be visible.
-
-</div>
-
-<div class="important" data-title="Note">
-
-> Eventstreams Custom-Endpoint/Custom-App sources also provide **Kafka** endpoints where data can be pushed to
-
-</div>
-
-### 6. Import Data Generator Notebook
-
-We use a python notebook to generate a stream of artificial click events. The notebook can be found in this GitHub repository [Generate_synthetic_web_events.ipynb](https://github.com/microsoft/FabConRTITutorial/blob/main/notebook/Generate_synthetic_web_events.ipynb).
-
-1. Open the notebook in Github by clicking on this [link](https://github.com/microsoft/FabConRTITutorial/blob/main/notebook/Generate_synthetic_web_events.ipynb). In GitHub click on the **Download raw file** icon on the top right.
-
-   ![alt text](assets/image_task06_step01.png)
-
-   Save the notebook on your local hard drive. By default it will be stored in the folder **Downloads**.
-
-   Now we have to import the notebook into our Fabric Workspace. To aceive this execute the following steps.
-
-2. To import the notebook into your workspace you first have to return to the workspace. To do so click on the icon of your workspace on the left pane. In our example the workspace is named **RTI Tutorial**. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you. After changing to the workspace click on the menu **Import**, select **Notebook** and then the option **From this computer**.
-
-   ![alt text](assets/image_task06_step02.png)
-
-3. In the pane **Import status** on the right side select **Upload**
-
-   ![alt text](assets/image_task06_step03.png)
-
-4. Browse to the folder on your local computer where you saved the notebook and select the notebook and click on the button **Open**.
-
-   ![alt text](assets/image_task06_step04.png)
-
-   After the notebook has been uploaded Fabric will display a message that the notebook has been imported successfully.
-
-   ![alt text](assets/image_task06_step04b.png)
-
-### 7. Run the notebook
-
-Now we have to run the notebook to create the stream of artificial click events for our lab. In order for the Notebook to send the events to the correct Event Hub we have to insert the information we have saved in [Task 5 - Create Event Stream](#5-create-a-new-eventstream).To run the notebook and create our datastream please proceed with the following steps.
-
-<div class="warning" data-title="Note">
-
-> DO NOT use an InPrivate browser window. Recommend using a Personal browser window for the Notebook session to connect and run successfully.
-
-</div>
-
-1. Click on the Notebook **Generate_synthetic_web_events** in your Fabric Workspace to open it.
-
-   ![alt text](assets/image_task07_step01.png)
-
-2. Paste in the values your copied in [Task 5 - Create Event Stream](#5-create-a-new-eventstream) as values for `eventHubNameevents` and `eventHubConnString` into the notebook.
-
-   ![alt text](assets/image_task07_step02.png)
-
-3. Click **Run all** at the top left to start generating streaming events.
-
-   ![alt text](assets/image_task07_step03.png)
-
-   <div class="info" data-title="Note">
-
-   > It can happen that the notebook will throw some errors in cell 1. These errors are caused by libaries that already have been installed in the environment. You can safely ignore these errors. The notebook will execute successfully regardless of these errors.
-
-   </div>
-
-   ![alt text](assets/image_task07_errors.png)
-
-   Wait a few minutes for the first code cell to finish and it will proceed to next code cells automatically.
-
-4. Scroll down to the last code cell and it should begin to print the generated synthetic events in JSON format. If you see an output similar to the following screenshot everything is set up and the notebooks streams artificial click data to the event hub.
-
-   ![alt text](assets/image_task07_step04.png)
 
 ### 8. Define Eventstream topology
 
 Next we have to create the Eventstream topology that will insert the streamed data into our KQL Database. To aceive this please follow the following steps.
 
-1. Open your Eventstream in your Fabric Workspace. To do so click on the icon of your workspace on the left pane. In our example the workspace is named **RTI Tutorial**. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you. After changing to the workspace click on the Eventstream **WebEventStream_ES**.
-
-   ![alt text](assets/image_task08_step01.png)
 
 2. Click on **Edit** in the top toolbar.
 
-   ![alt text](assets/image_task08_step02.png)
+   ![alt text](Manufacturing_Assets/3%20Edit%20EventStream.png)
 
-3. Click on the node **Transform events or add Destination** and select **Filter** from the menu.
+3. Click on the node **Transform events or add Destination** and select **Eventhouse** under Destinations from the menu.
 
-   ![alt text](assets/image_task08_step03.png)
+   ![alt text](Manufacturing_Assets/3%20Eventstream%20Create%20Destination.png)
 
    <div class="info" data-title="Note">
 
@@ -509,261 +391,54 @@ Next we have to create the Eventstream topology that will insert the streamed da
 
    </div>
 
-4. Click on the pencil icon in the node **Filter1** to enter edit mode.
+4. This will then display a screen for entering in details of where we want to write our data to.
 
-   ![alt text](assets/image_task08_step04.png)
+   ![alt text](Manufacturing_Assets/3%20EventStream%20Destination%20Screen.png)
 
-5. Provide the following values in the pane **Filter** on the left side. Then click on **Save**.
+5. Provide the following values in the pane **Eventhouse** on the left side. For the KQL Destination Table, we will need to select Create new and then set the name.  Once filled out, we will then click on **Save**.
 
    | Field                           | Value               |
    | :------------------------------ | :------------------ |
-   | **Operation name**              | `ClickEventsFilter` |
-   | **Select a field to filter on** | **eventType**       |
-   | **Keep events when the value**  | **equals**          |
-   | **value**                       | `CLICK`             |
-
-   ![alt text](assets/image_task08_step05.png)
-
-   <div class="important" data-title="Note">
-
-   > Note: `CLICK` is in **ALL CAPS**.
-
-   </div>
+   | **Event processing before ingestion** | Ensure that this option is selected.    
+   | **Destionation name**           | `oeedata-destination` |
+   | **Workspace**                   | **Workspace Name assigned, in this example I will select Fabric Manufacturing Demo**       |
+   | **KQL Database**                | **oeedata_eh**          |
+   | **KQL Destination table**       | `bronze_oeedata`             |
+   | **Input data format**                 | Ensure that the option **Json** is selected.   
 
    <div class="important" data-title="Note">
 
-   > It is normal that the node **ClickEventsFilter** is shown with an error. The error indicates that there is no target for the datastream coming out of the filter. We will fix this in the next step.
+   > Note: Once filled out, your screen should look like the below.
 
    </div>
 
-6. Click on **+** icon next to the **ClickEventsFilter** node. and choose **Stream** from the context menu.
+   ![alt text](Manufacturing_Assets/3%20Eventstream%20Destination%20Details.png)
 
-   ![alt text](assets/image_task08_step06.png)
+6. We will then publish the Eventsteam to activate the stream and start writing data to our Eventhouse.
 
-7. Coose **Stream** from the context menu.
+   ![alt text](Manufacturing_Assets/3%20Publish%20Eventstream%20Final.png)
 
-   ![alt text](assets/image_task08_step07.png)
+7. We will then need to repeat the same steps 4 additional times.  Details for what needs to be created are below.
 
-8. Click on the pencil in node **Stream1** to go to edit mode. Enter `ClickEventsStream` as name of the Eventstream in the field **Stream name**. Ensure that the **Input data format** is **Json**. Click on the Button **Save**.
+   * AnamolyHistory Data
+      * New Eventsteam called **anamolyhistory_es**
+      * Source: EventHub - **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus-anomaly-history**
+      * Destination: Same settings, new table name of **bronze_anomalyhistory**
 
-   ![alt text](assets/image_task08_step08.png)
+   * Downtime Reason History Data
+      * New Eventsteam called **downtimereasonhistory_es**
+      * Source: EventHub - **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus-downtime-reasons**
+      * Destination: Same settings, new table name of **bronze_downtimereasonhistory**
 
-9. Click on **+** icon next to the node **ClickEventsStream**.
+   * ScrapHistory Data
+      * New Eventsteam called **scraphistory_es**
+      * Source: EventHub - **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus-scrap-history**
+      * Destination: Same settings, new table name of **bronze_scraphistory**
 
-   ![alt text](assets/image_task08_step09.png)
-
-10. Select the option **Eventhouse** in the context menu.
-
-    ![alt text](assets/image_task08_step10.png)
-
-11. Click the pencil in node **Eventhouse1** to enter edit mode. Provide the following values in the pane **Eventhouse**.
-
-    | Field                                 | Value                                                                                                                                        |
-    | :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------- |
-    | **Event processing before ingestion** | Ensure that this option is selected.                                                                                                         |
-    | **Destionation name**                 | `ClickEventStore`                                                                                                                            |
-    | **Workspace**                         | Select **RTI Tutorial**. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you. |
-    | **Eventhouse**                        | Select the Eventhouse **WebEvents_EH**                                                                                                       |
-    | **KQL Database**                      | Select the KQL Database **WebEvents_EH**                                                                                                     |
-    | **Destination table**                 | Click on **Create new** and enter `BronzeClicks` as name for the new table and click on **Done**.                                            |
-    | **Input data format**                 | Ensure that the option **Json** is selected.                                                                                                 |
-
-    ![alt text](assets/image_task08_step11.png)
-
-    Click the button **Save** after you entered all the values.
-
-12. Click on **+** sign next to the node **WebEventsStream_ES**.
-
-    ![alt text](assets/image_task08_step12.png)
-
-13. Choose the option **Filter** from the context menu.
-
-    ![alt text](assets/image_task08_step13.png)
-
-14. Delete the connection between the new filter node **Filter1** and the node **ClickEventsFilter** by clicking on the trashcan icon.
-
-    ![alt text](assets/image_task08_step14.png)
-
-15. Connect the output of the node **WebEventsStream_ES** to the input of the node **ClickEventsFilter**.
-
-    ![alt text](assets/image_task08_step15.gif)
-
-16. Click on the pencil icon of the new node **Filter1** to enter edit mode. Provide the following values in the pane **Filter** on the left side. Then click on **Save**.
-
-    | Field                           | Value                    |
-    | :------------------------------ | :----------------------- |
-    | **Operation name**              | `ImpressionEventsFilter` |
-    | **Select a field to filter on** | **eventType**            |
-    | **Keep events when the value**  | **equals**               |
-    | **value**                       | `IMPRESSION`             |
-
-    ![alt text](assets/image_task08_step16.png)
-
-    <div class="important" data-title="Note">
-
-    > Note: `IMPRESSION` is in **ALL CAPS**.
-
-    </div>
-
-    <div class="important" data-title="Note">
-
-    > It is normal that the node **ImpressionEventsFilter** is shown with an error. The error indicates that there is no target for the datastream coming out of the filter. We will fix this in the next step.
-
-    </div>
-
-17. Click on **+** sign next to the **ImpressionEventsFilter** node and choose **Stream** from the context menu.
-
-    ![alt text](assets/image_task08_step17.png)
-
-18. Click on the pencil icon in the node **Stream1** to enter edit mode. Enter `ImpressionsEventsStream` as name of the Eventstream in the field **Stream name**. Ensure that the **Input data format** is **Json**. Click on the Button **Save**.
-
-    ![alt text](assets/image_task08_step18.png)
-
-19. Click on **+** icon next to the node **ImpressionEventsStream** and select **Eventhouse** from the context menu.
-
-    ![alt text](assets/image_task08_step19.png)
-
-20. Click the pencil in node **Eventhouse1** to enter edit mode. Provide the following values in the pane **Eventhouse**.
-
-    | Field                                 | Value                                                                                                                                        |
-    | :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------- |
-    | **Event processing before ingestion** | Ensure that this option is selected.                                                                                                         |
-    | **Destionation name**                 | `ImpressionEventStore`                                                                                                                       |
-    | **Workspace**                         | Select **RTI Tutorial**. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you. |
-    | **Eventhouse**                        | Select the Eventhouse **WebEvents_EH**                                                                                                       |
-    | **KQL Database**                      | Select the KQL Database **WebEvents_EH**                                                                                                     |
-    | **Destination table**                 | Click on **Create new** and enter `BronzeImpressions` as name for the new table and click on **Done**.                                       |
-    | **Input data format**                 | Ensure that the option **Json** is selected.                                                                                                 |
-
-    After providing these values click on the button **Save**.
-
-    ![alt text](assets/image_task08_step20.png)
-
-21. Click on the button **Publish** that is located in the toolbar at the top of the screen.
-
-    ![alt text](assets/image_task08_step21.png)
-
-    After a few minutes, you should see the nodes **ClickEventStore** and **ImpressionEventStore** change to mode **Streaming**.
-
-    ![alt text](assets/image_task08_step21b.png)
-
-    In the end your Eventstream toplogy should look like the image below.
-
-    ![alt text](assets/image_task08_step21c.png)
-
-### 9. Setting up the Lakehouse
-
-In this task we will set up the Lakehouse that will contain additional information for our usecase and in which we will also make the data from the KQL Database accessible through the lakehouse.
-
-1. Go to the folder [**ref_data**](https://github.com/microsoft/FabConRTITutorial/tree/main/ref_data) in the Github repo and download the **products.csv** and **productcategory.csv** files on your computer.
-
-   ![alt text](assets/image_task09_step01.png)
-
-2. To create a Lakehouse we first have to return to the workspace where all other objects are in. To do so click on the icon **RTI Tutorial** in the left toolbar. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you.
-
-   ![alt text](assets/image_task09_step02.png)
-
-3. Click on the button **+ New Item** in the toolbar and in the popin window click on the tile **Lakehouse**.
-
-   ![alt text](assets/image_task09_step03.png)
-
-4. In the dialog **New lakehouse** enter `WebSalesData_LH` as name for the new lakehouse. Ensure that the checkbox **Lakehouse schemas (Public Preview)** is not checked. Then click on the button **Create**
-
-   ![alt text](assets/image_task09_step04.png)
-
-### 10. Uploading reference data files and creating delta tables in the lakehouse
-
-After our lakehouse has been created the overview page of the lakehouse will be displayed. Next task we have to accomplish is to load static data into our new lakehouse. To do so please execute the following steps.
-
-1. Click on the button **Get data** in the toolbar and select **Upload Files** from the dropdown menu.
-
-   ![alt text](assets/image_task10_step01.png)
-
-2. To upload the two files click on the folder symbol under **Files/**. Select the two files **products.csv** and **productcategory.csv**. Then click on the button **Open**.
-
-   ![alt text](assets/image_task10_step02.png)
-
-   <div class="info" data-title="Note">
-
-   > To select the two files at once you can just hold the key **CTRL** while you click the two files.
-
-   </div>
-
-3. In the popin window **Upload files** click on the button **Upload**. Now the files will be uploaded.
-
-   ![alt text](assets/image_task10_step03.png)
-
-4. To check that the files have been uploaded successfully, click on the folder **Files** in the pane **Explorer**. You should see the files in the list **Files** in the right part of the window.
-
-   ![alt text](assets/image_task10_step04.png)
-
-5. Next we have to create delta tables in our Lakehouse from the files we uploaded. To do this access the context menu by clicking on the three dots (**...**). Select **Load to tables** from the context menu.
-
-   ![alt text](assets/image_task10_step05.png)
-
-   In the submenu click on **New table**
-
-   ![alt text](assets/image_task10_step05b.png)
-
-6. Retain all default values and click on the button **Load**.
-
-   ![alt text](assets/image_task10_step06.png)
-
-   <div class="info" data-title="Note">
-
-   > This steps have to be executed for the file **productcategory.csv** as well as for the file **product.csv**.
-
-   </div>
-
-7. Ensure that both files **products.csv** and **productcategory.csv** are available as delta tables in your lakehouse. Your lakehouse should look like this:
-
-   ![alt text](assets/image_task10_step07.png)
-
-### 11. Accessing Eventhouse data from the lakehouse
-
-In this task we will make the Eventhouse tables form the KQL Database available in our Lakehouse. This will be accomplished by creating _shortcuts_.
-
-1. Click on the button **Get data** in the menu bar at the top. Choose **New shortcut** from the dropdown menu.
-
-   ![alt text](assets/image_task11_step01.png)
-
-   <div class="important" data-title="Note">
-
-   > If your Lakehouse is using Schemas you will see the schema **dbo** under the folder **Tables**. right-click the schema **dbo** and select the option **New table shortcut** from the context menu.
-
-   </div>
-
-2. Select Microsoft OneLake.
-
-   ![alt text](assets/image_task11_step02.png)
-
-3. Select the KQL Database **WebEvents_EH** in the Window **Select a data source type** and click on the button **Next**.
-
-   ![alt text](assets/image_task11_step03.png)
-
-4. Expand the folder **Tables** under **WebEvents_EH** in the window **New shortcut** and check both tables **BronzeClicks** and **BronzeImpressions**. Click on **Next**.
-
-   ![alt text](assets/image_task11_step04.png)
-
-   <div class="info" data-title="Note">
-
-   > You may return to this step to create additional shortcuts, after running the [createAll.kql](https://github.com/microsoft/FabConRTITutorial/blob/main/kql/createAll.kql) database script which will create additional tables. For now, you may proceed by selecting just the **BronzeClicks** and **BronzeImpressions** tables.
-
-   </div>
-
-5. Click on the button **Create**.
-
-   ![alt text](assets/image_task11_step05.png)
-
-   Now you can see the shortcuts to the tables **BronzeClicks** and **BronzeImpressions** under the folder **Tables** in the lakehouse **WebSalesData_LH**.
-
-   ![alt text](assets/image_task11_step05b.png)
-
-   <div class="info" data-title="Note">
-
-   > Note that the shortcuts have another icon than the regular delta tables.
-
-   </div>
+   * WorkOrderHistory Data
+      * New Eventsteam called **workorderhistory_es**
+      * Source: EventHub - **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus-workorder-history**
+      * Destination: Same settings, new table name of **bronze_workorderhistory**
 
 ### 12. Build the KQL DB schema
 
