@@ -64,7 +64,6 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 - Eventstreams allow us to bring real-time events (including Kafka endpoints) into Fabric, transform them, and then route them to various destinations without writing any code (no-code).
 
-- In this solution, Clicks and Impressions events are ingested from an Eventstream into the respective 'BronzeClicks' and 'BronzeImpressions' tables.
 
 - Enhanced capabilities allows us to source data into Eventstreams from Azure Event Hubs, IoT Hubs, Azure SQL Database (CDC), PostgreSQL Database (CDC), MySQL Database (CDC), Azure Cosmos Database (CDC), Google Cloud Pub/Sub, Amazon Kinesis Data Streams, Confluent Cloud Kafka, Azure Blog Storage events, Fabric Workspace Item events, Sample data or Custom endpoint (Custom App).
 
@@ -77,8 +76,6 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - A shortcut is a schema entity that references data stored external to a KQL database in your cluster. In Lakehouse(s), Eventhouse(s), or KQL Databases it's possible to create shortcuts referencing internal locations within Microsoft Fabric, ADLS Gen2, Spark Notebooks, AWS S3 storage accounts, or Microsoft Dataverse.
 
 - By enabling us to reference different storage locations, OneLake's Shortcuts provides a unified source of truth for all our data, within the Microsoft Fabric environment and ensures clarity regarding the origin of our data.
-
-- In this solution, the `Product` and `ProductCategory` delta tables in OneLake are defined as external tables using shortcuts. Meaning the data is not copied but served from the OneLake itself. Shortcuts allow data to remain stored in outside of Fabric, yet presented via Fabric as a central location.
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-analytics/onelake-shortcuts?tabs=onelake-shortcut).
 
@@ -135,8 +132,6 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 - While similar to Power BI's dashboard functionality, Real-time Dashboards have a different use case. Real-time Dashboards are commonly used for operational decision making, rather than the business intelligence use cases Power BI targets. Power BI supports more advanced visualizations and provides a rich data-story capabilities. Real-time Dashboards refresh very fast and allow with ease to toggle between visuals, and analysts to pro-developer can explore/edit queries without needing to download a desktop tool. This makes the experience simpler for analysts to understand and visualize large volumes of highly-granular data.
 
-- In this solution, the Real-time dashboard will contain a collection of visual tiles _Click Through Rate_ stat KPIs, _Impressions_ area chart, _Clicks_ area chart, _Impressions by Location_ map for geo-spatial analytics and _Average Page Load Time_ in a line chart. This feature supports filter parameters, additional pages, markdown tiles, including Plotly, multiple KQL datasources, base queries, embedding.
-
 - Real-time Dashboard's also support sharing while retaining permission controls, setting of alerts via Data Activator, and automatic refresh with a minimum frequency of 30 seconds.
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-intelligence/dashboard-real-time-create).
@@ -168,9 +163,11 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 ---
 
-## The e-commerce store
+## The Manufacturing Company
 
-The e-commerce store database entities are:
+#todo
+
+The Manufacturing Company database entities are:
 
 - **Product:** the product catalogue.
 - **ProductCategory:** the product categories.
@@ -183,10 +180,6 @@ The e-commerce store database entities are:
   - A **click event** is logged when the product is clicked and the customer has viewed the details.
 
     ![Clicks](assets/store2.png)
-
-    Photo by [Himiway Bikes](https://unsplash.com/@himiwaybikes?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/black-and-gray-motorcycle-parked-beside-brown-wall-Gj5PXw1kM6U?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash).  
-    Photo by [HEAD Accessories](https://unsplash.com/@headaccessories?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/silver-and-orange-head-lamp-9uISZprJdXU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash).  
-    Photo by [Jan Kopřiva](https://unsplash.com/@jxk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/a-close-up-of-a-helmet-with-sunglasses-on-it-CT6AScSsQQM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash).
 
 ---
 
@@ -211,11 +204,11 @@ Now with Data Activator (Reflex), we can also set alerts on Real-time Dashboards
 ## Data schema
 
 ### Data flow
-
+#todo
 ![MRD](assets/mrd.png)
 
 ### Tables
-
+#todo
 | Table                 | Origin           | Description                                                                                                                                                                                                                                 |
 | --------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **BronzeClicks**      | Eventhouse table | Streaming events representing the product being seen or clicked by the customer. Will be streamed into Fabric Eventhouse from an eventstream. We'll use a Fabric Notebook to simulate and push synthetic data (fake data) into an endpoint. |
@@ -379,9 +372,11 @@ In this section we will be streaming events (impressions and clicks events) gene
 
    ![alt text](assets/image_task05_step01.png)
 
-2. Give the Eventstream the name `WebEventsStream_ES`. Make sure that the checkbox **Enhanced Capabilites** is selected and click on **Create**.
+2. Give the Eventstream the name `LitmusOEEData`.  
+Then select **Create**.
 
-   ![alt text](assets/image_task05_step02.png)
+   ![alt text](Manufacturing_Assets/LitmussOEEDataEventStream.png)
+
 
 3. On the Screen **Design a flow to ingest, transform, and route streaming events** click on **Use Custom Endpoint**. This will create an event hub connected to the Eventstream.
 
