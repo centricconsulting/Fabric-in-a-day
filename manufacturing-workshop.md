@@ -1,19 +1,3 @@
----
-published: true # Optional. Set to true to publish the workshop (default: false)
-type: workshop # Required.
-title: Data Engineer in a Day - Manfuacturing Edition # Required. Full title of the workshop
-short_title: Data Engineer in a Day - Manfuacturing Edition # Optional. Short title displayed in the header
-description: In this technical workshop, you will build a complete analytics platform with streaming data using Microsoft Fabric Real-Time Intelligence components and other features of Microsoft Fabric. This is a proctor led worksop in which each section is accompanied by a technical overview of Fabric RTI components. # Required.
-level: intermediate # Required. Can be 'beginner', 'intermediate' or 'advanced'
-authors: # Required. You can add as many authors as needed
-  - Microsoft Fabric Real-Time Intelligence
-contacts: # Required. Must match the number of authors
-  - https://aka.ms/fabricblog
-duration_minutes: 360 # Required. Estimated duration in minutes
-audience: students, pro devs, analysts # Optional. Audience of the workshop (students, pro devs, etc.)
-tags: fabric, kql, realtime, intelligence, event, stream, sql, data, analytics, kusto, medallion, dashboard, reflex, activator # Required. Tags for filtering and searching
----
-
 # Introduction
 
 Suppose you work for a manufacturing organization.  You've been tasked with developing a solution that will monitor machines in the warehouse.  This solution will be leveraged by consumers to understand issues, performance, and health of the overall operations.
@@ -159,7 +143,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 - Feature [documentation](https://learn.microsoft.com/fabric/get-started/copilot-real-time-intelligence).
 
-  ![Copilot](assets/Copilot.png "Fabric Copilot in KQL Queryset")
+
 
 ---
 
@@ -320,7 +304,7 @@ Then select **Create**.
    ![alt text](Manufacturing_Assets/3%20oeedata_es%20inital%20publish.png)
 
 
-### 8. Define Eventstream topology
+### 6. Define Eventstream topology
 
 Next we have to create the Eventstream topology that will insert the streamed data into our KQL Database. To aceive this please follow the following steps.
 
@@ -388,13 +372,33 @@ Next we have to create the Eventstream topology that will insert the streamed da
       * Source: EventHub - **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus-workorder-history**
       * Destination: Same settings, new table name of **bronze_workorderhistory**
 
+### 7. Setting up the Lakehouse
+
+In this task we will set up the Lakehouse that will contain additional information for our usecase and in which we will also make the data from the KQL Database accessible through the lakehouse.
+
+
+1. To create a Lakehouse we first have to return to the workspace where all other objects are in. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you.
+
+
+2. Click on the button **+ New Item** in the toolbar and in the popin window click on the tile **Lakehouse**.
+
+   ![alt text](assets/image_task09_step03.png) #todo - Update image 
+
+3. In the dialog **New lakehouse** enter `OEE_LH` as name for the new lakehouse. Ensure that the checkbox **Lakehouse schemas (Public Preview)** is not checked. Then click on the button **Create**
+
+   ![alt text](Manufacturing_Assets/New%20Lakehouse.png)
+
+4. We then create two notebooks that will be used to bring in reference data to enrich our streaming data.  To make this easier, we've uploaded these notebooks to the repo for you to import.  Go to the GitHub repo and download the notebooks **common_functions.ipynb** and **Load_reference_data.ipynb** under the notebook folder.
+
+
+
+
 ### 12. Build the KQL DB schema
 
 In this section we will create all the silver tables, functions and enable update policies and in our Eventhouse KQL Database. Two of the tables (`product` and `productCategory`) are shortcuts to the lakehouse and the data is **NOT** being copied into our KQL Database.
 
-![alt text](assets/fabrta71.png)
 
-1. Open the KQL Database **WebEvents_EH** in the Eventhouse of your Fabric Workspace. To do so click on the Icon of the Eventhouse in the left toolbar.
+1. Open the KQL Database **OEE_EH** in the Eventhouse of your Fabric Workspace. To do so click on the Icon of the Eventhouse in the left toolbar.
 
    ![alt text](assets/image_task12_step01.png)
 
