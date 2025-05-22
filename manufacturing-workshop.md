@@ -1,4 +1,4 @@
-[[toc]]
+
 # Introduction
 
 Suppose you work for a manufacturing organization.  You've been tasked with developing a solution that will monitor machines in the warehouse.  This solution will be leveraged by consumers to understand issues, performance, and health of the overall operations.
