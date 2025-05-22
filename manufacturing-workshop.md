@@ -489,11 +489,18 @@ Proceed to paste each query below, add a visual, and apply changes.
 Next we will create a base query.  This base query can be used to simplify the logic required in your dashboard.
 
 To do this, select **Base queries**
-
+```kusto
+silver_oeedata
+| join kind=leftouter external_table('dim_assetitem') 
+on $left.asset == $right.asset and $left.line == $right.line and $left.plant == $right.plant
+| extend A = availability, Q = quality, P = productivity, OEE = overallEquipmentEffectiveness
+| project itemcode, itemdescription, machinemodel, serialnumber, 
+OEE, plant, line, asset,  A, Q, P, timestamp, state, PartitionId, uptime,
+defectiveUnits, totalUnits, EventProcessedUtcTime, EventEnqueuedUtcTime
+```
 
 
 #### Total Units Produced
-
 
 ```kusto
 //Total Units Produced
