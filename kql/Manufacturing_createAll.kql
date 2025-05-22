@@ -53,14 +53,14 @@
 
 
 // Apply Update Policy to silver_oeedata Table
-.alter table silver_oeedata policy update @'[{
+.alter table silver_oeedata policy update 
+```[{
     "IsEnabled": true,
     "Source": "bronze_oeedata",
     "Query": "TransformOEEDataToSilver()",
     "IsTransactional": false,
     "PropagateIngestionProperties": false
-}]'
-
+}]```
 
 // Create Silver Work Order History Table
 .create table silver_workorderhistory (
