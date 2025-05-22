@@ -102,13 +102,13 @@
 
 
 // Apply Update Policy to silver_workorderhistory Table
-.alter table silver_workorderhistory policy update @'[{
+.alter table silver_workorderhistory policy update ```[{
     "IsEnabled": true,
     "Source": "bronze_workorderhistory",
     "Query": "TransformWorkOrderHistorySilver()",
     "IsTransactional": false,
     "PropagateIngestionProperties": false
-}]'
+}]```
 
 
 // Create Materialized View on Transformed OEE Data
