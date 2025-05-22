@@ -112,7 +112,7 @@
 
 
 // Create Materialized View on Transformed OEE Data
-.create async materialized-view with (backfill = true) mv_OEEData on table TransformedOEEDataSilver {
+.create async materialized-view with (backfill = true) mv_OEEData on table silver_oeedata {
     silver_oeedata
     | summarize avg(overallEquipmentEffectiveness) by bin(ingestedAt, 5m)
 }
