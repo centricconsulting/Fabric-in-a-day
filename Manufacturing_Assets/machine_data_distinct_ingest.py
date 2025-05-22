@@ -22,7 +22,7 @@ df.write.mode("overwrite").parquet("Files/MachineDataDistinct/")
 # In[ ]:
 
 
-df_machine_data = spark.read.format("parquet").option("header","true").load("abfss://Centric_Fabric_Workshop@onelake.dfs.fabric.microsoft.com/LitmusOEELH.Lakehouse/Files/MachineDataDistinct")
+df_machine_data = spark.read.format("parquet").option("header","true").load("abfss://ReplaceWithWorkspaceName@onelake.dfs.fabric.microsoft.com/ReplaceWithLakehouseName.Lakehouse/Files/MachineDataDistinct")
 
 df_machine_data_deduped = df_machine_data.dropDuplicates()
 df_machine_data_deduped.write.format("delta").option("overwriteSchema", "true").mode("overwrite").saveAsTable("dimassetitem")
