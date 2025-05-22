@@ -1,1 +1,118 @@
-//Add KQL to create silver and Gold layers
+// Create Silver OEE Data Table
+.create table silver_oeedata (
+    totalUnits: long,
+    productivity: double,
+    plant: string,
+    overallEquipmentEffectiveness: double,
+    quality: double,
+    state: long,
+    uptime: long,
+    line: string,
+    timestamp: datetime,
+    asset: string,
+    defectiveUnits: long,
+    availability: double,
+    EventProcessedUtcTime: datetime,
+    PartitionId: long,
+    EventEnqueuedUtcTime: datetime,
+    ingestedAt: datetime,
+    uptimeDuration: timespan
+)
+
+
+// Define Function to Transform OEE Data
+.create-or-alter function TransformOEEDataToSilver() {
+    bronze_oeedata
+    | extend 
+        timestamp = unixtime_milliseconds_todatetime(tolong(timestamp)),
+        overallEquipmentEffectiveness = todouble(OEE),
+        quality = round(todouble(Q), 4),
+        productivity = round(todouble(P), 4),
+        availability = round(todouble(A), 4),
+        uptimeDuration = totimespan(tolong(uptime) * 1s),
+        ingestedAt = now()
+    | project 
+        totalUnits = tolong(totalUnits),
+        productivity,
+        plant = tostring(plant),
+        overallEquipmentEffectiveness,
+        quality,
+        state = tolong(state),
+        uptime = tolong(uptime),
+        line = tostring(line),
+        timestamp,
+        asset = tostring(asset),
+        defectiveUnits = tolong(defectiveUnits),
+        availability,
+        EventProcessedUtcTime = todatetime(EventProcessedUtcTime),
+        PartitionId = tolong(PartitionId),
+        EventEnqueuedUtcTime = todatetime(EventEnqueuedUtcTime),
+        ingestedAt,
+        uptimeDuration
+}
+
+
+// Apply Update Policy to silver_oeedata Table
+.alter table silver_oeedata policy update @'[{
+    "IsEnabled": true,
+    "Source": "bronze_oeedata",
+    "Query": "TransformOEEDataToSilver()",
+    "IsTransactional": false,
+    "PropagateIngestionProperties": false
+}]'
+
+
+// Create Silver Work Order History Table
+.create table silver_workorderhistory (
+    woDate: datetime,
+    woDateOnly: string,               // because we used format_datetime() for this
+    plant: string,
+    woNumber: string,
+    line: string,
+    woType: string,
+    partitionId: long,
+    taskDescription: string,
+    priority: string,
+    asset: string,
+    assignedTo: string,
+    ingestionTime: datetime
+)
+
+
+// Define Function to Transform Work Order History
+.create-or-alter function TransformWorkOrderHistorySilver() {
+    bronze_workorderhistory
+    | extend 
+        woDateOnly = format_datetime(WO_Date, 'yyyy-MM-dd HH:mm'),
+        ingestionTime = ingestion_time()
+    | project 
+        woDate = WO_Date,
+        woDateOnly,
+        plant = plant,
+        woNumber = WO_Number,
+        line = line,
+        woType = WO_Type,
+        partitionId = tolong(PartitionId),
+        taskDescription = Task_Description,
+        priority = Priority,
+        asset = asset,
+        assignedTo = Assigned_To,
+        ingestionTime
+}
+
+
+// Apply Update Policy to silver_workorderhistory Table
+.alter table silver_workorderhistory policy update @'[{
+    "IsEnabled": true,
+    "Source": "bronze_workorderhistory",
+    "Query": "TransformWorkOrderHistorySilver()",
+    "IsTransactional": false,
+    "PropagateIngestionProperties": false
+}]'
+
+
+// Create Materialized View on Transformed OEE Data
+.create async materialized-view with (backfill = true) mv_OEEData on table TransformedOEEDataSilver {
+    silver_oeedata
+    | summarize avg(overallEquipmentEffectiveness) by bin(ingestedAt, 5m)
+}
