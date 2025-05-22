@@ -100,11 +100,8 @@ workOrderHistory
     "PropagateIngestionProperties": false
 }]```
 
-.create async materialized-view with (backfill = true) mv_JoinedWorkOrderOEE
-on table SilverWorkOrderHistory
+.create async materialized-view with (backfill = true) mv_OEEData on table TransformedOEEDataSilver
 {
-    SilverWorkOrderHistory
-    | join kind=inner (
-        TransformedOEEDataSilver
-    ) on plant, line, asset
+    TransformedOEEDataSilver
+    | summarize avg(overallEquipmentEffectiveness) by bin(ingestedAt,5m)
 }
