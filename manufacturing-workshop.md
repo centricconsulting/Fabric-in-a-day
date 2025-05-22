@@ -487,7 +487,7 @@ Proceed to paste each query below, add a visual, and apply changes.
 
 
 Next we will create a base query.  This base query can be used to simplify the logic required in your dashboard.
-
+ ![alt text](Manufacturing_Assets/baseQuery.png)
 To do this, select **Base queries**
 ```kusto
 silver_oeedata
