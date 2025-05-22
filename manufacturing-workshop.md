@@ -390,55 +390,49 @@ In this task we will set up the Lakehouse that will contain additional informati
 
 4. We then create two notebooks that will be used to bring in reference data to enrich our streaming data.  To make this easier, we've uploaded these notebooks to the repo for you to import.  Go to the GitHub repo and download the notebooks **common_functions.ipynb** and **Load_reference_data.ipynb** under the notebook folder.
 
+   ![alt text](Manufacturing_Assets/Notebooks%20to%20download.png)
 
+5. To upload the notebooks, go to your workspace and select **->| Import** / **Notebook** / **From this computer**.  Select the notebooks that we downloaded from GitHub.
 
+   ![alt text](Manufacturing_Assets/ImportNotebooks.png)
 
-### 12. Build the KQL DB schema
+6. Once the notebooks have been imported, we then will open and run the **Load_reference_data** notebook.  This will download the csv data from our source (GitHub), create our delta table in our lakehouse if it doesn't exist, then merging the data.  To run the notebook just select the **Run All** button on the notebook.
 
-In this section we will create all the silver tables, functions and enable update policies and in our Eventhouse KQL Database. Two of the tables (`product` and `productCategory`) are shortcuts to the lakehouse and the data is **NOT** being copied into our KQL Database.
+   ![alt text](Manufacturing_Assets/RunNotebook.png)
+
+### 8. Build the KQL DB schema
+
+In this section we will create all the silver tables, functions and enable update policies and in our Eventhouse KQL Database. One of the tables (`dim_assetitem`) are shortcuts to the lakehouse and the data is **NOT** being copied into our KQL Database.
 
 
 1. Open the KQL Database **OEE_EH** in the Eventhouse of your Fabric Workspace. To do so click on the Icon of the Eventhouse in the left toolbar.
+   Then Click on the button **+ New** in the top toolbar and choose **OneLake shortcut** from the drop down menu.
 
-   ![alt text](assets/image_task12_step01.png)
+   ![alt text](Manufacturing_Assets/onelake_shortcut.png)
 
-2. Click on the button **+ New** in the top toolbar and choose **OneLake shortcut** from the drop down menu.
-
-   ![alt text](assets/image_task12_step02.png)
-
-   <div class="info" data-title="Note">
-
-   > By now data has already streamed into you KQL-Database. You can see this by looking at the dashborad that is provided on the overview page of the KQL-Database ![alt text](assets/image_task12_step02b.png)
-
-   </div>
 
 3. Select **Microsoft OneLake**..
 
    ![alt text](assets/image_task12_step03.png)
 
-4. Select the lakehouse **WebSalesData_LH** and click on the button **Next**.
+4. Select the lakehouse **OEE_LH** and click on the button **Next**.
 
-   ![alt text](assets/image_task12_step04.png)
+   ![alt text](Manufacturing_Assets/ShortcutLakehouse.png)
 
-5. Expand the folder **Tables**, select the table **products** table and click on the button **Create**. This will create a shortcut to the table **products** in your Lakehouse without copying the data from the Lakehouse to Eventhouse.
+5. Expand the folder **Tables**, select the table **dim_assetitem** table and click on the button **Create**. This will create a shortcut to the table **dim_assetitem** in your Lakehouse without copying the data from the Lakehouse to Eventhouse.
 
-   ![alt text](assets/image_task12_step05.png)
+   ![alt text](Manufacturing_Assets/dim_assetitem_shortcut.png)
 
    The next window is a current preview feature. The Accelerate feature. This feature caches the data from the shortcut and drastically increases the performance of the queries which reads this data.
 
    In this section, you can try to play with the feature (choose either to set in on or off), and see if you can spot the difference in the performance of the next steps.
 
-   ![alt text](assets/image_task12_step05-2.png)
+   ![alt text](Manufacturing_Assets/CreateDimItemAssetShortcut.png)
 
-   <div class="important" data-title="Note">
 
-   > Repeat the steps above for the table **productcategory** to create a shortcut for this table as well.
+6. Expand the folder **Shortcuts** in the tree of your Eventhouse **OEE_EH** to verify if the shortcut has been created correctly.
 
-   </div>
-
-6. Expand the folder **Shortcuts** in the tree of your Eventhouse **WebEvents_EH** to verify if the 2 shortcuts have been created correctly.
-
-   ![alt text](assets/image_task12_step06.png)
+   ![alt text](Manufacturing_Assets/CreatedShortcut.png)
 
 7. Click on the button **Explore your Data** at the top of the screen.
 
