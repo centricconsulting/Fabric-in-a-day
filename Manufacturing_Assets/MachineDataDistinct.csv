@@ -1,0 +1,18 @@
+itemcode,itemdescription,plant,asset,line,partitionid,machinemodel,serialnumber
+STB-150-GZ  ,"Steel bracket, 150mm, galvanized finish for structural support.  ",Plant 1,Machine 1,Line 1,0,XR-700 Series,SN-654321
+NUT-M8-LOCK  ,"M8 lock nut, nylon insert, corrosion-resistant, vibration-proof.  ",Plant 1,Machine 2,Line 1,2,XR-900 Series,SN-123456
+GEAR-PL20T  ,"Plastic gear, 20 teeth, injection molded, Nylon 66.  ",Plant 1,Machine 3,Line 1,0,XR-850 Series,SN-543210
+CABL-4C-1M  ,"4-core control cable, 1 meter, PVC insulated, industrial use.  ",Plant 1,Machine 1,Line 2,1,XR-350 Series,SN-543211
+BLT-M8X40-ZN  ,"Hex bolt, M8 x 40mm, zinc-plated, used in mechanical assemblies.  ",Plant 1,Machine 2,Line 2,3,XR-950 Series,SN-999888
+WSH-M8-FLT  ,"Flat washer, M8, stainless steel, for load distribution.  ",Plant 1,Machine 3,Line 2,1,XR-900 Series,SN-234567
+SEN-TEMP-NTC  ,"NTC thermistor temperature sensor, 10K?, epoxy coated.  ",Plant 2,Machine 1,Line 1,1,XR-300 Series,SN-234560
+BEAR-608ZZ  ,"Deep groove ball bearing, 608ZZ, shielded, pre-lubricated.  ",Plant 2,Machine 2,Line 1,0,XR-400 Series,SN-670345
+ENCL-PL-ABS,"ABS plastic enclosure, 120x90x50mm, snap-fit cover.",Plant 2,Machine 3,Line 1,1,XR-450 Series,SN-672340
+PCBA-MCU-V3  ,"Assembled PCB with microcontroller, version 3.0, RoHS compliant.  ",Plant 2,Machine 1,Line 2,1,XR-600 Series,SN-345671
+MTR-DC12V-10W  ,"DC motor, 12V, 10W, with leads and mounting holes.  ",Plant 2,Machine 2,Line 2,2,XR-650 Series,SN-456723
+HSNK-AL50X50  ,"Aluminum heatsink, 50x50mm, with fins for passive cooling.  ",Plant 2,Machine 3,Line 2,3,XR-550 Series,SN-672345
+DRV-MTR-HB2  ,"H-Bridge motor driver, dual channel, 12-24V compatible.  ",Plant 3,Machine 1,Line 1,2,XR-250 Series,SN-672346
+WSH-M8-FLT  ,"Flat washer, M8, stainless steel, for load distribution.  ",Plant 3,Machine 2,Line 1,0,XR-900 Series,SN-672347
+SEN-TEMP-NTC  ,"NTC thermistor temperature sensor, 10K?, epoxy coated.  ",Plant 3,Machine 3,Line 1,2,XR-300 Series,SN-672348
+TUB-PU8MM  ,"Polyurethane tubing, 8mm OD, flexible, abrasion-resistant.  ",Plant 3,Machine 1,Line 2,3,XR-200 Series,SN-672349
+PLT-BASE-AL  ,"Aluminum base plate, 5mm thick, drilled and tapped.  ",Plant 3,Machine 2,Line 2,3,XR-150 Series,SN-672350
