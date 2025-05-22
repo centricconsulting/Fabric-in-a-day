@@ -430,92 +430,54 @@ In this section we will create all the silver tables, functions and enable updat
 
    ![alt text](Manufacturing_Assets/CreatedShortcut.png)
 
-7. Click on the button **Explore your Data** at the top of the screen.
+7. Click on the button **Query with code** at the top of the screen.
 
-   ![alt text](assets/image_task12_step07.png)
+   ![alt text](Manufacturing_Assets/Explore%20Data.png)
 
-   The popin window **Explore your data** will be shown.
+8. We will use the queryset to create our downsteam tables and functions for the other layers of our medallion architecture
 
-   ![alt text](assets/image_task12_step07b.png)
+   ![alt text](Manufacturing_Assets/Empty%20Queryset.png)
 
-8. Open the file [createAll.kql](https://github.com/microsoft/FabConRTITutorial/blob/main/kql/createAll.kql) in GitHub and click copy icon at the top right to copy the entire file content. This will copy the file contents to the Windows Clipboard.
+9. Download the following file and copy the contents into the KQL Queryset from before [Manufacturing_createAll.kql](https://github.com/centricconsulting/Fabric-in-a-day/blob/main/kql/Manufacturing_createAll.kql) Once pasted into the kql queryset, execute each step to see what is processed and then verify all objects are created successfully. 
 
-   ![alt text](assets/image_task12_step08.png)
-
-9. On the left side in the pane **KQL Databases** underneath the node **WebEvents_EH** there is the automatically created queryset **WebEvents_EH_queryset**. Click on this queryset and replace the text in the tab **WebEvents_EH** by the contents of the file [createAll.kql](https://github.com/microsoft/FabConRTITutorial/blob/main/kql/createAll.kql). The easiest way to do this is to click in the textbox, press **CTRL**+**A** to select everything and then press **CTRL**+**V** to insert the contents from the clipboard. Then click on the Button **Run**
-
-   ![alt text](assets/image_task12_step09.png)
-
-   The status of the execution of the commands from the file [createAll.kql](https://github.com/microsoft/FabConRTITutorial/blob/main/kql/createAll.kql) can be seen at the bottom of the pane. The result of each Command should be **Completed**.
-
-   ![alt text](assets/image_task12_step09b.png)
-
-   Click on the pencil at the tab **WebEvents_EH** and rename the tab to **createAll**.
-
-   ![alt text](assets/image_task12_step09c.png)
-
-    <div class="info" data-title="Note">
-
-   > You can add additional tabs in the KQL Queryset to add new queries.
-
-    </div>
 
 10. Expand all folders in the database pane on the left. All tables and functions that have been created by the script can be found here.
 
-    ![alt text](assets/image_task12_step012.png)
+    ![alt text](Manufacturing_Assets/KQL_All_Objects.png)
 
-    <div class="important" data-title="Note">
 
-    > While on the KQL Database details screen you may explore additional **Real-Time Intelligence Samples** by clicking the **drop-drop next to Get data** and selecting a desired sample. These samples give you the ability to learn more.
+### 10. Real-Time Dashboard
 
-     </div>
+In this section, we will build a real-time dashboard to visualize the streaming data and set it to refresh every 30 seconds. 
 
-    ![alt text](assets/image_task12_step012b.png)
 
-    There are many samples from different usecases like IoT, weather analytics or Azure PlayFab game analytics.
-
-    ![alt text](assets/image_task12_step012c.png)
-
-### 13. Real-Time Dashboard
-
-In this section, we will build a real-time dashboard to visualize the streaming data and set it to refresh every 30 seconds. (Optionally) A pre-built version of the dashboard is available to download [here](<https://github.com/microsoft/FabricRTIWorkshop/blob/main/dashboards/RTA%20dashboard/dashboard-RTA Dashboard.json>), which can be imported and configured to your KQL Database data source.
-
-    <div class="important" data-title="Note">
-      > The Proctor Guide covers this process.
-
-![Real-Time Dashboard](assets/RealTimeDashboard.png "Real-Time Dashboard")
-
-</div>
-
-1. Change to the workspace. To do so click on the icon of your workspace on the left pane. In our example the workspace is named **RTI Tutorial**. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you.
-
-   ![alt text](assets/image_task13_step01.png)
+1. Change to the workspace. To do so click on the icon of your workspace on the left pane. In our example the workspace is named **Fabric_Manufacturing_Demo**. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you.
 
 2. To create a new realtime dashboard click on the button **+ New Item** and the select **Real-Time Dashboard**
 
-   ![alt text](assets/image_task13_step02.png)
+   ![alt text](Manufacturing_Assets/NewDashboard.png)
 
-3. Enter the name `Web Events Dashboard` in the field **New Real-Time Dashboard**. Then click on **Create**.
+3. Enter the name `OEE Dashboard` in the field **New Real-Time Dashboard**. Then click on **Create**.
 
-   ![alt text](assets/image_task13_step03.png)
+   ![alt text](Manufacturing_Assets/OEEDashboard_Name.png)
 
 4. An empty dashboard will be displayed. To add a visualisation click on the button **+ Add tile**.
 
-   ![alt text](assets/image_task13_step04.png)
+   ![alt text](Manufacturing_Assets/NewTile.png)
 
 5. Click on the Button **+ Data source**.
 
-   ![alt text](assets/image_task13_step05.png)
+   ![alt text](Manufacturing_Assets/DashboardDataSource.png)
 
-6. In the Window **One Lake Data Hub** select the Eventhouse **WebEvents_EH**. Then click on **Connect**.
+6. In the Window **One Lake Data Hub** select the Eventhouse **OEE_EH**. Then click on **Connect**.
 
-   ![alt text](assets/image_task13_step06.png)
+   ![alt text](Manufacturing_Assets/SelectOEE_EH.png)
 
-7. As name keep the given name `WebEvents_EH`. Set the **Database** to **WebEvents_EH** and click on the button **Add**.
+7. As name keep the given name `OEE_EH`. Set the **Database** to **OEE_EH** and click on the button **Add**.
 
-   ![alt text](assets/image_task13_step07.png)
+   ![alt text](Manufacturing_Assets/Add_Datasource.png)
 
-Proceed to paste each query below, add a visual, and apply changes. (Optionally) All queries are available in this script file [dashboard-RTA.kql](https://github.com/microsoft/FabricRTIWorkshop/blob/main/dashboards/RTA%20dashboard/dashboard-RTA.kql).
+Proceed to paste each query below, add a visual, and apply changes. 
 
    <div class="important" data-title="Note">
 
@@ -523,17 +485,27 @@ Proceed to paste each query below, add a visual, and apply changes. (Optionally)
 
    </div>
 
-#### Clicks by hour
 
-This visual will show the clicks by hour. It will use the following query.
+Next we will create a base query.  This base query can be used to simplify the logic required in your dashboard.
+
+To do this, select **Base queries**
+
+
+
+#### Total Units Produced
+
 
 ```kusto
-//Clicks by hour
-SilverClicks
-| where eventDate between (_startTime.._endTime)
-| summarize date_count = count() by bin(eventDate, 1h)
-| render timechart
-| top 30 by date_count
+//Total Units Produced
+let latestTime = toscalar(['_master_query'] | summarize max(EventEnqueuedUtcTime));
+let startTime = latestTime - 6h;
+['_master_query']
+// | extend DateTime = timestamp // Convert Unix timestamp to datetime
+// | where DateTime >= _startTime and DateTime <= _endTime  // Filter data within the StartTime and EndTime range
+| where timestamp >= startTime and timestamp <= latestTime  // Filter data from the last 7 days
+| where isempty(['plantParam']) or plant in (['plantParam']) and isempty(['machineParam']) or asset in (['machineParam']) //and ItemCode == "Item123" and ItemDescription == "Sensor Module – Gen 2"
+| summarize TotalUnitsProduced = max(totalUnits) by bin(timestamp,1d)
+| project TotalUnitsProduced
 ```
 
 1. Replace the content of the textbox by the code above. Click on the time range parameter at the top of the screen and set it to **Last 7 days**. This parameter is referenced by the query in the `where` clause by using fields `_startTime` and `_endTime`. Click on the button **Run**. The query will be executed and the results will be shown in the table at the bottom. To create a visualisation click on the button **+ Add Visual**. This will open a pane at the right side of the browser.
@@ -724,7 +696,7 @@ In this section we will enable auto-refresh so the dashboard will be automatical
 
    ![alt text](assets/image_task13_step21.png)
 
-### 14. Data Activator
+### 11. Data Activator
 
 In this section we will create a Reflex Alert that will send a Teams Message when a value meets a certain threshold.
 
