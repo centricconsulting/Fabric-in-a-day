@@ -16,7 +16,7 @@
   - [Data Activator](#dataActivator)
   - [Copilot](#copilot)
   - [Architecture](#architecture)
-  - [Components of Fabric's Real-Time Intelligence](#Components-of-Fabric's-Real-Time-Intelligence)
+  - [Components of Fabric's Real-Time Intelligence](#Components-of-Fabric-s-Real-Time-Intelligence)
   - [](#)
   - [](#)
   - [](#)
@@ -193,8 +193,9 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - Feature [documentation](https://learn.microsoft.com/fabric/get-started/copilot-real-time-intelligence).
 
 
-[Back to Table of Contents](#table-of-contents)
 ---
+
+[Back to Table of Contents](#table-of-contents)
 
 
 
