@@ -3,7 +3,7 @@
 - [Introduction](#introduction)
 - [Modalities](#modalities)
 - [Authors](#Authors)
-- [Fabric Real-Time Intelligence](#Fabric Real-Time Intelligence)
+- [Fabric Real-Time Intelligence](#FabricReal-TimeIntelligence)
   - [Eventstreams](#Eventstreams)
   - [Shortcuts](#Shortcuts)
   - [Eventhouse](#Eventhouse)
