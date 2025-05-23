@@ -799,6 +799,11 @@ Add a tile & paste the query below once. Note, this is a multi-statement query t
 
 ![alt text](Manufacturing_Assets/workorderhistory.png)
 
+Add conditional formatting for the table. 
+![alt text](Manufacturing_Assets/cf.png)
+![alt text](Manufacturing_Assets/cf1.png)
+
+
 After you added all the visuals and moved them to thier appropiate places your dashboard should look similar to this.
 ![alt text](Manufacturing_Assets/oeedashboard.png)
 
@@ -828,7 +833,7 @@ In this section we will create a Reflex Alert that will send an Email Message wh
 
 2. In the pane **Set alert** set the values as in the screenshot below
 
-  ![alt text](Manufacturing_Assets/da1.png)
+  ![alt text](Manufacturing_Assets/alert.png)
 
    Select **Email** as **Action**.
 
