@@ -256,8 +256,41 @@ If you need a new Trial Tenant to complete the lab, suggest to register a new Ou
    ![FabricURL](assets/image_task01_step01.png "Fabric URL")
 
 2. Login with provided credentials, if a trial fabric tenant was previously setup (reference [Pre-reqs](#pre-requisites)). You may also choose to run the lab in your own Fabric Tenant if you already have one.
+   
+3. Setting Up Multi-Factor Authentication (MFA) on First Login
 
-3. Click **Real-Time Intelligence**.
+When you log in for the first time, you will be required to set up Multi-Factor Authentication (MFA) using the Microsoft Authenticator app. This enhances the security of your account.
+
+#### Steps to Set Up MFA:
+
+1. **Download the Microsoft Authenticator App**
+   - Go to the App Store (iOS) or Google Play Store (Android) on your mobile device.
+   - Search for "Microsoft Authenticator" and install the app.
+
+2. **Sign In to the Portal**
+   - Open [Microsoft Fabric](https://app.fabric.microsoft.com/) in your browser.
+   - Enter your provided credentials and click **Sign in**.
+
+3. **Begin MFA Setup**
+   - After entering your credentials, you will be prompted to set up additional security.
+   - Choose **Microsoft Authenticator** as your authentication method.
+
+4. **Scan the QR Code**
+   - On your computer screen, a QR code will be displayed.
+   - Open the Microsoft Authenticator app on your phone.
+   - Tap **Add account** > **Work or school account** > **Scan a QR code**.
+   - Use your phone to scan the barcode shown on your computer.
+
+5. **Complete Setup**
+   - Follow the instructions in the app to finish the setup process.
+   - Once complete, you may be prompted to approve a test sign-in notification on your phone.
+
+6. **You're All Set!**
+   - Each time you log in, you may be asked to approve future sign-ins via the app.
+
+> **Tip:** If you encounter issues, refer to the [Microsoft Authenticator setup guide](https://support.microsoft.com/en-us/account-billing/how-to-use-the-microsoft-authenticator-app-9783c865-0308-42fb-a519-8cf9e91a3a32).
+
+7. Click **Real-Time Intelligence**.
 
    ![Fabric Home](assets/image_task01_step03.png "Real-Time Intelligence")
 
