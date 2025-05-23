@@ -3,7 +3,7 @@
 - [Introduction](#introduction)
 - [Modalities](#modalities)
 - [Authors](#Authors)
-- [Fabric Real-Time Intelligence](#FabricRealTimeIntelligence)
+- [Fabric Real Time Intelligence](#FabricRealTimeIntelligence)
   - [Eventstreams](#Eventstreams)
   - [Shortcuts](#Shortcuts)
   - [Eventhouse](#Eventhouse)
@@ -68,7 +68,7 @@ All the **code** in this tutorial can be found here:
 
 ---
 
-## Fabric Real-Time Intelligence
+## Fabric Real Time Intelligence
 
 Let's cover the key-features of Real-Time Intelligence and how we plan to use them for our architecture.
 
