@@ -652,7 +652,7 @@ silver_oeedata
 
     ```kusto
     silver_oeedata
-      | distinct asset
+    | distinct asset
     ```
 
   Use the values provided in the screenshot below.
@@ -809,15 +809,14 @@ In this section we will enable auto-refresh so the dashboard will be automatical
 
 1. While editing the dashboard, click on the tab **Manage** and then click on the button **Auto refresh**. This will open a pane on the right side of the browser.
 
-   ![alt text](assets/image_task13_step19.png)
+![alt text](Manufacturing_Assets/af.png)
 
 2. In the pane **Auto refresh** set it to **Enabled** and set **Default refresh rate** to **Continous**. Then click on the button **Apply**
 
-   ![alt text](assets/image_task13_step20.png)
+![alt text](Manufacturing_Assets/af1.png)
 
 3. Click on the tab **Home** and then click on the button **Save**.
 
-   ![alt text](assets/image_task13_step21.png)
 
 ### 11. Data Activator
 
