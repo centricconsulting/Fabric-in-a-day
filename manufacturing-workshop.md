@@ -618,15 +618,27 @@ In this section, we will build a real-time dashboard to visualize the streaming 
   defectiveUnits, totalUnits, EventProcessedUtcTime, EventEnqueuedUtcTime
   ```
 5. Save and Close the Base Query pop up. Next we will add two parameters in the RTI Dashboards. You will notice a default paramater is created for Time Range. We will not change the Time Range parameter. 
-   1. First parameter name is Plant and VariableName is **plantParam**. Use the values provided in the screenshot below.
-    ![alt text](Manufacturing_Assets/plantparam.png)
+   1. First parameter name is Plant and VariableName is **plantParam**.
+  KQL Query to select param value from silver table -
+  ```silver_oeedata
+  | distinct plant```
 
-   2. Second parameter name is Machine - VariableName - **machineParam**. Use the values provided in the screenshot below.
-   ![alt text](Manufacturing_Assets/machineparam.png)
+   Use the values provided in the screenshot below.
+
+  ![alt text](Manufacturing_Assets/plantparam.png)
+
+   3. Second parameter name is Machine - VariableName - **machineParam**.
+   KQL Query to select param value from silver table -
+    ```silver_oeedata
+    | distinct asset```
+
+  Use the values provided in the screenshot below.
+
+  ![alt text](Manufacturing_Assets/machineparam.png)
 
 All parameters will look like below under Manage Tab - Manage Parameters. 
 
- ![alt text](Manufacturing_Assets/allparams.png)
+![alt text](Manufacturing_Assets/allparams.png)
 
 6. An empty dashboard is being displayed. To add a visualisation click on the button **+ Add tile**.
 
@@ -660,189 +672,130 @@ All parameters will look like below under Manage Tab - Manage Parameters.
 let latestTime = toscalar(['_master_query'] | summarize max(EventEnqueuedUtcTime));
 let startTime = latestTime - 6h;
 ['_master_query']
-// | extend DateTime = timestamp // Convert Unix timestamp to datetime
-// | where DateTime >= _startTime and DateTime <= _endTime  // Filter data within the StartTime and EndTime range
 | where timestamp >= startTime and timestamp <= latestTime  // Filter data from the last 7 days
 | where isempty(['plantParam']) or plant in (['plantParam']) and isempty(['machineParam']) or asset in (['machineParam']) //and ItemCode == "Item123" and ItemDescription == "Sensor Module – Gen 2"
 | summarize TotalUnitsProduced = max(totalUnits) by bin(timestamp,1d)
 | project TotalUnitsProduced
 ```
 
-1. Replace the content of the textbox by the code above. Click on the time range parameter at the top of the screen and set it to **Last 7 days**. This parameter is referenced by the query in the `where` clause by using fields `_startTime` and `_endTime`. Click on the button **Run**. The query will be executed and the results will be shown in the table at the bottom. To create a visualisation click on the button **+ Add Visual**. This will open a pane at the right side of the browser.
+1. Replace the content of the textbox by the code above. Click on the button **Run**. The query will be executed and the results will be shown in the table at the bottom. To create a visualisation click on the button **+ Add Visual**. This will open a pane at the right side of the browser.
 
-   ![alt text](assets/image_task13_step08.png)
+   ![alt text](Manufacturing_Assets/Add_Datasource.png)
 
-2. Format the visual by entering `Click by hour` in the field **Title**. Select **Area chart** in the combobox **Visual type**. Then click on the button **Apply changes**.
+2. Format the visual by entering `Click by hour` in the field **Title**. Select **Area chart** in the combobox **Visual type**. Select Line Chart. Then click on the button **Apply changes**.
 
-   ![alt text](assets/image_task13_step09.png)
+   ![alt text](Manufacturing_Assets/totalunitsproduced.png)
 
-    <div class="important" data-title="Note">
-
-   > When you click on **Apply changes** the value of the range parameter will jump back to one hour. Ignore this for now as we will fix this later.
-
-     </div>
-
-3. While editing the dashboard, click on the tab **Manage** on the top left then click on the button **Parameters**.
-
-   ![alt text](assets/image_task13_step10.png)
-
-4. To edit the parameter **Time range** click on the pencil icon. This will enter the edit mode for this parameter.
-
-   ![alt text](assets/image_task13_step11.png)
-
-5. Select **Last 7 Days** in the combo box **Default value**. Then click on **Done**.
-
-   ![alt text](assets/image_task13_step12.png)
-
-6. In the parameter pane click on the button **Close**.
-
-   ![alt text](assets/image_task13_step13.png)
 
 7. Click on the tab **Home** and then click on the button **New tile** again to proceed with the next visuals.
 
-   ![alt text](assets/image_task13_step14.png)
-
 [Back to Table of Contents](#table-of-contents)
 
-#### Impressions by hour
+#### Average Defective Units
 
-- Visual type: **Area chart**.
-
-```kusto
-  //Impressions by hour
-  SilverImpressions
-  | where eventDate between (_startTime.._endTime)
-  | summarize date_count = count() by bin(eventDate, 1h)
-  | render timechart
-  | top 30 by date_count
-```
-
-![alt text](assets/fabrta53.png)
-
-#### Impressions by location
-
-- Visual type: **Map**.
+- Visual type: **Stat**.
 
 ```kusto
-//Impressions by location
-SilverImpressions
-| where eventDate  between (_startTime.._endTime)
-| join external_table('products') on $left.productId == $right.ProductID
-| project lon = toreal(geo_info_from_ip_address(ip_address).longitude), lat = toreal(geo_info_from_ip_address(ip_address).latitude), Name
-| render scatterchart with (kind = map) //, xcolumn=lon, ycolumns=lat)
+let latestTime = toscalar(['_master_query'] | summarize max(EventEnqueuedUtcTime));
+let startTime = latestTime - 6h;
+['_master_query']
+| where isempty(['plantParam']) or plant in (['plantParam']) and isempty(['machineParam']) or asset in (['machineParam']) 
+| where timestamp >= startTime and timestamp <= latestTime  // Filter data from the last 7 days
+| summarize AverageDefectiveUnits = toint(avg(defectiveUnits)) 
+| project AverageDefectiveUnits
 ```
 
-![alt text](assets/fabrta54.png)
+![alt text](Manufacturing_Assets/defectiveunits.png)
 
-#### Average Page Load time
+#### Overall Equipment Effectiveness (OEE) – Last 6 Hours
 
-- Visual type: **Timechart**.
+- Visual type: **Area Chart**.
 
 ```kusto
-//Average Page Load time
-SilverImpressions
-| where eventDate   between (_startTime.._endTime)
-//| summarize average_loadtime = avg(page_loading_seconds) by bin(eventDate, 1h)
-| make-series average_loadtime = avg(page_loading_seconds) on eventDate from _startTime to _endTime+4h step 1h
-| extend forecast = series_decompose_forecast(average_loadtime, 4)
-| render timechart
+let latestTime = toscalar(['_master_query'] | summarize max(EventEnqueuedUtcTime));
+let startTime = latestTime - 6h;
+['_master_query']
+| where EventEnqueuedUtcTime between (startTime .. latestTime)
+| where (isempty(['plantParam']) or plant in (['plantParam'])) and (isempty(['machineParam']) or asset in (['machineParam'])) 
+| extend OEE = todouble(OEE)
+| summarize avgOEE = avg(OEE) by bin(EventEnqueuedUtcTime, 1m)
+| order by EventEnqueuedUtcTime asc
 ```
 
-![alt text](assets/AvgPageLoadTime.png)
+![alt text](Manufacturing_Assets/oee.png)
 
-#### Impressions, Clicks & CTR
+#### Availability – Last 6 Hours
 
-1. Add a tile & paste the query below once. Note, this is a multi-statement query that uses multiple let statements & a query combined by semicolons.
+- Visual type: **Line Chart**.
+
+```kusto
+let latestTime = toscalar(['_master_query'] | summarize max(EventEnqueuedUtcTime));
+let startTime = latestTime - 6h;
+['_master_query']
+| where EventEnqueuedUtcTime between (startTime .. latestTime)
+| extend ItemCode = itemcode, ItemDescription = itemdescription
+| where (isempty(['plantParam']) or plant in (['plantParam'])) and (isempty(['machineParam']) or asset in (['machineParam'])) 
+| extend Availability = todouble(A)
+| summarize avgAvailability = avg(Availability) by bin(EventEnqueuedUtcTime, 5m)
+| order by EventEnqueuedUtcTime asc
+```
+
+![alt text](Manufacturing_Assets/availability.png)
+
+#### Productivity – Last 6 Hours
+- Visual type: **Line Chart**.
+  
+Add a tile & paste the query below once. Note, this is a multi-statement query that uses multiple let statements & a query combined by semicolons.
 
    ```kusto
-   //Clicks, Impressions, CTR
-   let imp =  SilverImpressions
-   | where eventDate  between (_startTime.._endTime)
-   | extend dateOnly = substring(todatetime(eventDate).tostring(), 0, 10)
-   | summarize imp_count = count() by dateOnly;
-   let clck = SilverClicks
-   | where eventDate  between (_startTime.._endTime)
-   | extend dateOnly = substring(todatetime(eventDate).tostring(), 0, 10)
-   | summarize clck_count = count() by dateOnly;
-   imp
-   | join clck on $left.dateOnly == $right.dateOnly
-   | project selected_date = dateOnly , impressions = imp_count , clicks = clck_count, CTR = clck_count * 100 / imp_count
+    let latestTime = toscalar(['_master_query'] | summarize max(EventEnqueuedUtcTime));
+    let startTime = latestTime - 6h;
+    ['_master_query']
+    | where EventEnqueuedUtcTime between (startTime .. latestTime)
+    // | where EventEnqueuedUtcTime > ago(6h)  // Uncomment this line to use real-time mode
+    | extend ItemCode = itemcode, ItemDescription = itemdescription
+    | where (isempty(['plantParam']) or plant in (['plantParam'])) and (isempty(['machineParam']) or asset in (['machineParam']))
+    | extend Productivity = todouble(P)
+    | summarize avgProductivity = avg(Productivity) by bin(EventEnqueuedUtcTime, 5m)
+    | order by EventEnqueuedUtcTime asc
    ```
 
-2. Enter `Impressions` in the field **Tile name**. Select **Stat** in the combobox **Visual type**. In combobox **Data Value column** select **impressions (long)**. Then click on the button **Apply changes**.
+![alt text](Manufacturing_Assets/productivity.png)
 
-   ![alt text](assets/image_task13_step16.png)
 
-3. Click the 3-dots (**...**) at the top right of the tile you just created and select **Duplicate** from the context menu to duplicate it two more times.
+#### Quality – Last 6 Hours
 
-   ![alt text](assets/image_task13_step17.png)
-
-4. Name the 2nd one `Clicks`, set the Data value column to **clicks (long)**, then click on the button **Apply changes**.
-
-   ![alt text](assets/fabrta57.png)
-
-5. Name the 3rd `Click Through Rate`, set the Data value column to **CTR**, then click on the button **Apply changes**.
-
-   ![alt text](assets/fabrta58.png)
-
-6. (Optional) On the **Visual formatting** pane, scroll down and adjust the **Conditional formatting** as desired by clicking **+ Add rule**.
-
-[Back to Table of Contents](#table-of-contents)
-
-#### Average Page Load Time Anomalies
-
-- Visual type: **Anomalychart**
+- Visual type: **Line Chart**
 
   ```kusto
-  //Avg Page Load Time Anomalies
-  SilverImpressions
-  | where eventDate   between (_startTime.._endTime)
-  | make-series average_loadtime = avg(page_loading_seconds) on eventDate from _startTime to _endTime+4h step 1h
-  | extend anomalies = series_decompose_anomalies(average_loadtime)
-  | render anomalychart
+  let latestTime = toscalar(['_master_query'] | summarize max(EventEnqueuedUtcTime));
+  let startTime = latestTime - 6h;
+  ['_master_query']
+  | where EventEnqueuedUtcTime between (startTime .. latestTime)
+  | extend ItemCode = itemcode, ItemDescription = itemdescription
+  | where (isempty(['plantParam']) or plant in (['plantParam'])) and (isempty(['machineParam']) or asset in (['machineParam'])) 
+  | extend Quality = todouble(Q)
+  | summarize avgQuality = avg(Quality) by bin(EventEnqueuedUtcTime, 5m)
+  | order by EventEnqueuedUtcTime asc
   ```
 
-  ![alt text](assets/pageloadanomalies.png)
+![alt text](Manufacturing_Assets/quality.png)
 
-#### Strong Anomalies
+#### Production Orders
 
 - Visual type: **Table**
 
   ```kusto
-  //Strong Anomalies
-  SilverImpressions
-  | where eventDate between (_startTime.._endTime)
-  | make-series average_loadtime = avg(page_loading_seconds) on eventDate from _startTime to _endTime+4h step 1h
-  | extend anomalies = series_decompose_anomalies(average_loadtime,2.5)
-  | mv-expand eventDate, average_loadtime, anomalies
-  | where anomalies <> 0
-  | project-away anomalies
+ silver_workorderhistory
+| where (isempty(['plantParam']) or plant in (['plantParam'])) and (isempty(['machineParam']) or asset in (['machineParam']))
+| project woNumber, woDate, woType, assignedTo, plant, asset, line, taskDescription, priority, ingestionTime
   ```
 
-#### Logo (Markdown Text Tile)
-
-1. Click on the button **New text tile** in the toolbar at the top.
-
-   ![alt text](assets/image_task13_step17b.png)
-
-2. Paste the following code in the text area and click on the button **Apply changes**
-
-   ```
-   //Logo (Markdown Text Tile)
-   ![AdventureWorks](https://vikasrajput.github.io/resources/PBIRptDev/AdventureWorksLogo.jpg "AdventureWorks")
-   ```
-
-   ![alt text](assets/image_task13_step17c.png)
-
-   <div class="info" data-title="Note">
-
-   > **The title can be resized on the dashboard canvas directly, rather than writing code.**
-
-    </div>
+![alt text](Manufacturing_Assets/workorderhistory.png)
 
 After you added all the visuals and moved them to thier appropiate places your dashboard should look similar to this.
+![alt text](Manufacturing_Assets/oeedashboard.png)
 
-![alt text](assets/image_task13_step18.png)
 
 #### Auto-refresh
 
