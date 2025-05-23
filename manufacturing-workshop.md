@@ -820,29 +820,18 @@ In this section we will enable auto-refresh so the dashboard will be automatical
 
 ### 11. Data Activator
 
-In this section we will create a Reflex Alert that will send a Teams Message when a value meets a certain threshold.
+In this section we will create a Reflex Alert that will send an Email Message when a value meets a certain threshold.
 
-1. While editing the dashboard, click on the three dots (**...**) of the tile **Click by hour**. Select **Set alert** from the context menu. This will open the pane **Set alert** at the right side in the browser.
+1. While editing the dashboard, select **Set alert** from the context menu. This will open the pane **Set alert** at the right side in the browser.
 
-   ![alt text](assets/image_task14_step01.png)
+![alt text](Manufacturing_Assets/da.png)
 
-2. In the pane **Set alert** set the values as stated in the following table
+2. In the pane **Set alert** set the values as in the screenshot below
 
-   | Field              | Value                        |
-   | :----------------- | :--------------------------- |
-   | **Check**          | **On each event grouped by** |
-   | **Grouping field** | **event_date**               |
-   | **When**           | **date_count**               |
-   | **Condition**      | **Becomes greater than**     |
-   | **Value**          | `250`                        |
+  ![alt text](Manufacturing_Assets/da1.png)
 
-   Select **Message me in teams** as **Action**.
+   Select **Email** as **Action**.
 
-   ![alt text](assets/image_task14_step02.png)
-
-3. In the combobox **Workspace** select the workspace. In our example the workspace is named **RTI Tutorial**. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you. Ensure that in the combobox **Item** the value **Create a new item** is selected. Insert `My Reflex` as value for the field **New item name**. Then click on the button **Create**.
-
-   ![alt text](assets/image_task14_step03.png)
 
 <div class="info" data-title="Note">
   
