@@ -619,18 +619,23 @@ In this section, we will build a real-time dashboard to visualize the streaming 
   ```
 5. Save and Close the Base Query pop up. Next we will add two parameters in the RTI Dashboards. You will notice a default paramater is created for Time Range. We will not change the Time Range parameter. 
    1. First parameter name is Plant and VariableName is **plantParam**.
-  KQL Query to select param value from silver table -
-  ```silver_oeedata
-  | distinct plant```
+  KQL Query to select param value from silver table
+
+  ```kusto
+silver_oeedata
+  | distinct plant
+```
 
    Use the values provided in the screenshot below.
 
   ![alt text](Manufacturing_Assets/plantparam.png)
 
    3. Second parameter name is Machine - VariableName - **machineParam**.
-   KQL Query to select param value from silver table -
-    ```silver_oeedata
-    | distinct asset```
+   KQL Query to select param value from silver table 
+    ```kusto
+    silver_oeedata
+    | distinct asset
+```
 
   Use the values provided in the screenshot below.
 
