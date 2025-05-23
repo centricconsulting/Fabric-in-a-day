@@ -456,7 +456,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
    | **EventStream Name**                  |anamolyhistory_es|
    | **Connection**                        | Ensure that **litmus-anomaly-history** option is selected.    |
    | **Event processing before ingestion** | Ensure that this option is selected.  |  
-   | **Destionation name**           | `oeedata-destination` |
+   | **Destionation name**           | `anomaly-history-destination` |
    | **Workspace**                   | **Workspace Name assigned by Trainer**       |
    | **KQL Database**                | **OEE_EH**          |
    | **KQL Destination table**       | `bronze_anomalyhistory`             |
@@ -482,7 +482,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
    | **EventStream Name**                  |scraphistory_es|
    | **Connection**                        | Ensure that **litmus-scrap-history** option is selected.    |
    | **Event processing before ingestion** | Ensure that this option is selected.  |  
-   | **Destionation name**           | `downtime-reasons-destination` |
+   | **Destionation name**           | `scrap-history-destination` |
    | **Workspace**                   | **Workspace Name assigned by Trainer**       |
    | **KQL Database**                | **OEE_EH**          |
    | **KQL Destination table**       | `bronze_scraphistory`             |
@@ -495,7 +495,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
    | **EventStream Name**                  |workorderhistory_es|
    | **Connection**                        | Ensure that **litmus-workorder-history** option is selected.    |
    | **Event processing before ingestion** | Ensure that this option is selected.  |  
-   | **Destionation name**           | `downtime-reasons-destination` |
+   | **Destination name**           | `workorder-history-destination` |
    | **Workspace**                   | **Workspace Name assigned by Trainer**       |
    | **KQL Database**                | **OEE_EH**          |
    | **KQL Destination table**       | `bronze_workorderhistory`             |
