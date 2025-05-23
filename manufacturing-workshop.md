@@ -799,10 +799,19 @@ Add a tile & paste the query below once. Note, this is a multi-statement query t
 
 ![alt text](Manufacturing_Assets/workorderhistory.png)
 
-Add conditional formatting for the table. 
+Add conditional formatting for the table as shown in screenshots below. 
+
 ![alt text](Manufacturing_Assets/cf.png)
 ![alt text](Manufacturing_Assets/cf1.png)
 
+#### Rename Page 
+
+Rename Page 1 to Production Click on the three dots to rename. 
+
+![alt text](Manufacturing_Assets/rename.png)
+
+
+#### OEE Dashboard Finale 
 
 After you added all the visuals and moved them to thier appropiate places your dashboard should look similar to this.
 ![alt text](Manufacturing_Assets/oeedashboard.png)
