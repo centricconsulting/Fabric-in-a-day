@@ -1,7 +1,33 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
-- 
+- [Modalities](#modalities)
+- [Authors](#Authors)
+- [Fabric Real-Time Intelligence](#Fabric Real-Time Intelligence)
+  - [Eventstreams](#Eventstreams)
+  - [Shortcuts](#Shortcuts)
+  - [Eventhouse](#Eventhouse)
+  - [KQL Update policies](#KQL Update policies)
+  - [KQL Materialized Views](#KQL Materialized Views)
+  - [One Logical Copy](#One Logical Copy)
+  - [KQL Dynamic fields](#KQL Dynamic fields)
+  - [Kusto Query Language (KQL)](#Kusto Query Language (KQL))
+  - [Real-Time Dashboards](#Real-Time Dashboards)
+  - [Data Activator](#Data Activator)
+  - [Copilot](#Copilot)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+
+
+
 
 # Introduction
 
