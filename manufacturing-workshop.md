@@ -388,7 +388,7 @@ Then select **Create**.
 
    ![alt text](Manufacturing_Assets/SelectConnection.png)
 
-7. We then need to provide consumer group details for our EventHub. Each user is assigned their own consumer group. Enter the provided consumer group in the Consumer group text area. Then Click on Next and Add. Then Publish the Eventstream.
+7. We then need to provide consumer group details for the selected EventHub. Each user is assigned their own consumer group. Enter the provided consumer group in the Consumer group text area. Then Click on Next and Add. 
 
    ![alt text](Manufacturing_Assets/consumergroup.png)
 
@@ -403,7 +403,7 @@ Then select **Create**.
 
 ### 6. Define Eventstream topology
 
-Next we have to create the Eventstream topology that will insert the streamed data into our KQL Database. To aceive this please follow the following steps.
+Next we have to create the Eventstream topology that will insert the streamed data into our KQL Database. To achieve this please follow the following steps.
 
 
 2. Click on **Edit** in the top toolbar.
@@ -423,15 +423,16 @@ Next we have to create the Eventstream topology that will insert the streamed da
 4. This will then display a screen for entering in details of where we want to write our data to.
 
    ![alt text](Manufacturing_Assets/3%20EventStream%20Destination%20Screen.png)
+   ![alt text](Manufacturing_Assets/eventhousedetails.png)
 
-5. Provide the following values in the pane **Eventhouse** on the left side. For the KQL Destination Table, we will need to select Create new and then set the name.  Once filled out, we will then click on **Save**.
+6. Provide the following values in the pane **Eventhouse** on the left side. For the KQL Destination Table, we will need to select Create new and then set the name.  Once filled out, we will then click on **Save**.
 
    | Field                           | Value               |
    | :------------------------------ | :------------------ |
    | **Event processing before ingestion** | Ensure that this option is selected.    
    | **Destionation name**           | `oeedata-destination` |
-   | **Workspace**                   | **Workspace Name assigned, in this example I will select Fabric Manufacturing Demo**       |
-   | **KQL Database**                | **oeedata_es**          |
+   | **Workspace**                   | **Workspace Name assigned by Trainer**       |
+   | **KQL Database**                | **OEE_EH**          |
    | **KQL Destination table**       | `bronze_oeedata`             |
    | **Input data format**                 | Ensure that the option **Json** is selected.   
 
@@ -443,16 +444,24 @@ Next we have to create the Eventstream topology that will insert the streamed da
 
    ![alt text](Manufacturing_Assets/3%20Eventstream%20Destination%20Details.png)
 
-6. We will then publish the Eventsteam to activate the stream and start writing data to our Eventhouse.
+7. We will then publish the Eventsteam to activate the stream and start writing data to our Eventhouse.
 
    ![alt text](Manufacturing_Assets/3%20Publish%20Eventstream%20Final.png)
 
-7. We will then need to repeat the same steps 4 additional times.  Details for what needs to be created are below.
+8. We will then need to repeat the same steps 4 additional times. Create 4 more eventstreams. Go back to the workspace. Click on New Item.  Details for 4 additional eventstreams are below.
+ * AnamolyHistory Event Stream Data
 
-   * AnamolyHistory Data
-      * New Eventsteam called **anamolyhistory_es**
-      * Source: EventHub - **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus-anomaly-history**
-      * Destination: Same settings, new table name of **bronze_anomalyhistory**
+  | Field                           | Value               |
+   | :------------------------------ | :------------------ |
+   | **EventStream Name**                  |anamolyhistory_es|
+   | **Connection**                        | Ensure that **litmus-anomaly-history** option is selected.    |
+   | **Event processing before ingestion** | Ensure that this option is selected.  |  
+   | **Destionation name**           | `oeedata-destination` |
+   | **Workspace**                   | **Workspace Name assigned by Trainer**       |
+   | **KQL Database**                | **OEE_EH**          |
+   | **KQL Destination table**       | `bronze_anomalyhistory`             |
+   | **Input data format**                 | Ensure that the option **Json** is selected.  
+     
 
    * Downtime Reason History Data
       * New Eventsteam called **downtimereasonhistory_es**
