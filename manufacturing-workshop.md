@@ -299,7 +299,7 @@ When you log in for the first time, you will be required to set up Multi-Factor 
 
 ### 2. Fabric Workspace
 
-1. Click **Workspaces** on the left menu and open the Fabric Workspace **designated** to your login by the Fabric Trial Tenant.
+1. Click **Workspaces** on the left menu and open the Fabric Workspace **designated** to your login by the Fabric Trial Tenant. e.g. If you are User07, your lab workspace name will be LabUser07.
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -322,7 +322,7 @@ When you log in for the first time, you will be required to set up Multi-Factor 
 
 <div class="info" data-title="Note">
   
-> The [Eventhouse](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/eventhouse) is designed to handle real-time data streams efficiently, which lets organizations ingest, process, and analyze data in near real-time. Eventhouses are particularly useful for scenarios where **timely insights are crucial**. Eventhouses are **specifically tailored** to time-based, streaming events with multiple data formats. This data is automatically indexed and partitioned based on ingestion time.
+> The <a href="[https://fabric.microsoft.com/](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/eventhouse)" target="_blank">Eventhouse</a> [Eventhouse](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/eventhouse) is designed to handle real-time data streams efficiently, which lets organizations ingest, process, and analyze data in near real-time. Eventhouses are particularly useful for scenarios where **timely insights are crucial**. Eventhouses are **specifically tailored** to time-based, streaming events with multiple data formats. This data is automatically indexed and partitioned based on ingestion time.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
