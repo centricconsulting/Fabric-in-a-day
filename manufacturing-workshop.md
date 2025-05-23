@@ -255,7 +255,7 @@ If you need a new Trial Tenant to complete the lab, suggest to register a new Ou
 
    ![FabricURL](assets/image_task01_step01.png "Fabric URL")
 
-2. Login with provided credentials, if a trial fabric tenant was previously setup (reference Pre-reqs). You may also choose to run the lab in your own Fabric Tenant if you already have one.
+2. Login with provided credentials, if a trial fabric tenant was previously setup (reference Pre-reqs(#pre-requisites)). You may also choose to run the lab in your own Fabric Tenant if you already have one.
 
 3. Click **Real-Time Intelligence**.
 
