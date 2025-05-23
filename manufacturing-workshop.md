@@ -49,14 +49,14 @@ See what real customers like [McLaren](https://www.linkedin.com/posts/shahdevang
 
 All the **code** in this tutorial can be found here:  
 [Centic Consulting - Data Engineer in a Day Repo](https://github.com/centricconsulting/Fabric-in-a-day/)
-
+[Back to Table of Contents](#table-of-contents)
 ## Modalities
 
 - Total workshop duration is 5-6 hours.
 - Each section is accompanied with technical explanation of the Fabric Real-Time Intelligence component being used in the tutorial.
 - Without the accompanied explanation, the tutorial can be completed in 1-2 hours.
 
-
+[Back to Table of Contents](#table-of-contents)
 ## Authors
 
 - [Josh Higginbotham](https://www.linkedin.com/in/joshua-higginbotham-55625798/), Senior Architect
@@ -65,7 +65,7 @@ All the **code** in this tutorial can be found here:
 - [Thomas Romans](https://www.linkedin.com/in/thomasromanmiami), Senior Architect
 - [Todd Lyman](https://www.linkedin.com/in/toddlyman/), Senior Architect
 
-
+[Back to Table of Contents](#table-of-contents)
 ---
 
 ## Fabric Real Time Intelligence
@@ -80,7 +80,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - Enhanced capabilities allows us to source data into Eventstreams from Azure Event Hubs, IoT Hubs, Azure SQL Database (CDC), PostgreSQL Database (CDC), MySQL Database (CDC), Azure Cosmos Database (CDC), Google Cloud Pub/Sub, Amazon Kinesis Data Streams, Confluent Cloud Kafka, Azure Blog Storage events, Fabric Workspace Item events, Sample data or Custom endpoint (Custom App).
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-analytics/event-streams/overview).
-
+[Back to Table of Contents](#table-of-contents)
 ### Shortcuts
 
 - Shortcuts enable the creation of a live connections between OneLake and data sources, whether internal or external to Azure. This allows us to retrieve data from these locations as if they were seamlessly integrated into Microsoft Fabric.
@@ -90,7 +90,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - By enabling us to reference different storage locations, OneLake's Shortcuts provides a unified source of truth for all our data, within the Microsoft Fabric environment and ensures clarity regarding the origin of our data.
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-analytics/onelake-shortcuts?tabs=onelake-shortcut).
-
+[Back to Table of Contents](#table-of-contents)
 ### Eventhouse
 
 - An Eventhouse can host multiple KQL Databases for easier management. It will store events data from the Eventstream, leverage shortcuts and automate transformations in real-time. Eventhouses are **specifically tailored** to time-based, streaming or batch events with structured, semi-structured, and unstructured data.
@@ -100,7 +100,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - Eventhouse's support Kusto Query Language (KQL) queries, T-SQL queries and Python. The data is automatically made available in delta-parquet format and can be easily accessed from Notebooks for more advanced transformations.
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-intelligence/eventhouse).
-
+[Back to Table of Contents](#table-of-contents)
 ### KQL Update policies
 
 - This feature is also known as a mini-ETL. Update policies are automation mechanisms, triggered when new data is written to a table. They eliminate the need for external orchestration by automatically running a query to transform the ingested data and save the result to a destination table.
@@ -110,25 +110,25 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - In this solution, the data in derived silver layer tables (targets) of our medallion architecture is inserted upon ingestion into bronze tables (sources). Using Kusto's update policy feature, this appends transformed rows in real-time into the target table, as data is landing in a source table. This can also be set to run in as a transaction, meaning if the data from bronze fails to be transformed to silver, it will not be loaded to bronze either. By default, this is set to off allowing maximum throughput.
 
 - Feature [documentation](https://learn.microsoft.com/azure/data-explorer/kusto/management/update-policy).
-
+[Back to Table of Contents](#table-of-contents)
 ### KQL Materialized Views
 
 - Materialized views expose an aggregation query over a source table, or over another materialized view. We will use materialized views to create the Gold Layer in our medallion architecture. Most common materialized views provide the current reading of a metric or statistics of metrics over time. They can also be backfilled with historical data; however, by default they are automatically populated by newly ingested data.
 
 - Feature [documentation](https://learn.microsoft.com/azure/data-explorer/kusto/management/materialized-views/materialized-view-overview).
-
+[Back to Table of Contents](#table-of-contents)
 ### One Logical Copy
 
 - This feature creates a one logical copy of KQL Database data by turning on OneLake availability. Turning on OneLake availability for your KQL tables, database or Eventhouse means that you can query the data in your KQL database in Delta Lake format via other Fabric engines such as Direct Lake mode in Power BI, Warehouse, Lakehouse, Notebooks, and more. When activated, it will copy via mirroring the KQL data to your Fabric Datalake in delta-parquet format. Allowing you to shortcut tables from your KQL Database via OneLake to your Fabric Lakehouse, Data Warehouse, and also query the data in delta-parquet format using Spark Notebooks or the SQL-endpoint of the Lakehouse.
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-analytics/one-logical-copy).
-
+[Back to Table of Contents](#table-of-contents)
 ### KQL Dynamic fields
 
 - Dynamic fields are a powerful feature of KQL database's that support evolving schema changes and object polymorphism, allowing the storage/querying of different event types that have a common denominator of base fields.
 
 - Feature [documentation](https://learn.microsoft.com/azure/data-explorer/kusto/query/scalar-data-types/dynamic).
-
+[Back to Table of Contents](#table-of-contents)
 ### Kusto Query Language (KQL)
 
 - KQL is also known as the language of the cloud. It's available in many other services such as Microsoft Sentinel, Azure Monitor, Azure Resource Graph and Microsoft Defender. The code-name **Kusto** engine was invented by 4 engineers from the Power BI team over 10 years ago and has been implemented across all Microsoft services including Github Copilot, LinkedIn, Azure, Office 365, and XBOX.
@@ -137,7 +137,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 - In this solution, KQL commands will be automatically created and executed by eventstream to ingest data when configuring the Eventhouse KQL Database destination in the Eventstream. These commands will create the respective 'bronze' tables. Secondly, the control commands will be issued in a database script that automate creation of additional schema items such as Tables, Shortcuts, Functions, Policies and Materialized-Views.
 - Feature [documentation](https://learn.microsoft.com/azure/data-explorer/kusto/query/).
-
+[Back to Table of Contents](#table-of-contents)
 ### Real-Time Dashboards
 
 ![Real-Time Dashboards](assets/RTAMenu.png)
