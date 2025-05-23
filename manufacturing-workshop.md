@@ -15,6 +15,16 @@
   - [Real-Time Dashboards](#real-time-dashboards)
   - [Data Activator](#dataActivator)
   - [Copilot](#copilot)
+  - [Architecture](#architecture)
+  - [Components of Fabric's Real-Time Intelligence](#Components-of-Fabric's-Real-Time-Intelligence)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
   - [](#)
   - [](#)
   - [](#)
@@ -135,6 +145,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - Dynamic fields are a powerful feature of KQL database's that support evolving schema changes and object polymorphism, allowing the storage/querying of different event types that have a common denominator of base fields.
 
 - Feature [documentation](https://learn.microsoft.com/azure/data-explorer/kusto/query/scalar-data-types/dynamic).
+  
 [Back to Table of Contents](#table-of-contents)
 ### Kusto Query Language (KQL)
 
@@ -144,6 +155,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 - In this solution, KQL commands will be automatically created and executed by eventstream to ingest data when configuring the Eventhouse KQL Database destination in the Eventstream. These commands will create the respective 'bronze' tables. Secondly, the control commands will be issued in a database script that automate creation of additional schema items such as Tables, Shortcuts, Functions, Policies and Materialized-Views.
 - Feature [documentation](https://learn.microsoft.com/azure/data-explorer/kusto/query/).
+  
 [Back to Table of Contents](#table-of-contents)
 ### Real-Time Dashboards
 
@@ -155,6 +167,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-intelligence/dashboard-real-time-create).
 
+[Back to Table of Contents](#table-of-contents)
 ### Data Activator
 
 - Data Activator (code-name Reflex) is a no-code experience in Microsoft Fabric for automatically taking actions when patterns or conditions are detected in changing data. It monitors data in Power BI reports, Eventstreams items and Real-time Dashboards, for when the data hits certain thresholds or matches other patterns. It then triggers the appropriate action, such as alerting users or kicking off Power Automate workflows.
@@ -172,6 +185,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 - Feature [documentation](https://learn.microsoft.com/fabric/data-activator/data-activator-introduction).
 
+[Back to Table of Contents](#table-of-contents)
 ### Copilot
 
 - Copilot for Real-Time Intelligence is an advanced AI tool designed to help you explore your data and extract valuable insights. You can input questions about your data, which are then automatically translated into Kusto Query Language (KQL) queries. Copilot streamlines the process of analyzing data for both experienced KQL users and citizen data scientists.
@@ -179,7 +193,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - Feature [documentation](https://learn.microsoft.com/fabric/get-started/copilot-real-time-intelligence).
 
 
-
+[Back to Table of Contents](#table-of-contents)
 ---
 
 
@@ -194,7 +208,7 @@ Real-Time Intelligence allows organizations to ingest, process, analyze and, que
 
 Using Real-Time Intelligence enables faster, more accurate decision-making and accelerated time to insight.
 
-
+[Back to Table of Contents](#table-of-contents)
 ## Pre-requisites
 
 - Recommended material to review (at least one) prior to this lab, however it's not required:
@@ -202,6 +216,7 @@ Using Real-Time Intelligence enables faster, more accurate decision-making and a
   - [Implement a Real-Time Intelligence Solution Tutorial](https://learn.microsoft.com/fabric/real-time-intelligence/tutorial-introduction)
   - To complete the lab you **must** have access to a [Microsoft Fabric](https://www.microsoft.com/microsoft-fabric/getting-started) workspace with at least Contributor permissions.
 
+[Back to Table of Contents](#table-of-contents)
 ### Fabric tenant and capacity for Instructor led trainings
 
 <div class="important" data-title="Note">
@@ -210,6 +225,7 @@ Using Real-Time Intelligence enables faster, more accurate decision-making and a
 
 </div>
 
+[Back to Table of Contents](#table-of-contents)
 ### Trial Tenant for the Lab
 
 If you need a new Trial Tenant to complete the lab, suggest to register a new Outlook.com email and follow these steps:
@@ -224,6 +240,8 @@ If you need a new Trial Tenant to complete the lab, suggest to register a new Ou
    ![WorkspaceManageAccess](assets/WorkspaceManageAccess.png "Workspace Manage Access")
 
 ---
+
+[Back to Table of Contents](#table-of-contents)
 
 ## Building the platform
 
@@ -244,11 +262,15 @@ If you need a new Trial Tenant to complete the lab, suggest to register a new Ou
 
    ![Fabric Home](assets/image_task01_step03.png "Real-Time Intelligence")
 
+
+[Back to Table of Contents](#table-of-contents)
+
 ### 2. Fabric Workspace
 
 1. Click **Workspaces** on the left menu and open the Fabric Workspace **designated** to your login by the Fabric Trial Tenant.
 
 
+[Back to Table of Contents](#table-of-contents)
 
 ### 3. Create a new Eventhouse
 
@@ -271,6 +293,8 @@ If you need a new Trial Tenant to complete the lab, suggest to register a new Ou
 > The [Eventhouse](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/eventhouse) is designed to handle real-time data streams efficiently, which lets organizations ingest, process, and analyze data in near real-time. Eventhouses are particularly useful for scenarios where **timely insights are crucial**. Eventhouses are **specifically tailored** to time-based, streaming events with multiple data formats. This data is automatically indexed and partitioned based on ingestion time.
 </div>
 
+[Back to Table of Contents](#table-of-contents)
+
 ### 4. Enable OneLake Availability
 
 This feature is also called **"one logical copy"** and it automatically allows KQL Database tables to be accessed from a Lakehouse, Notebooks, etc in delta-parquet format via OneLake.
@@ -278,6 +302,9 @@ This feature is also called **"one logical copy"** and it automatically allows K
 When activated it will constantly copy the KQL data to your Fabric OneLake in delta format. It allows you to query KQL Database tables as delta tables using Spark or SQL endpoint on the Lakehouse. We recommend enabling this feature "before" we load the more data into our KQL Database. Also, consider this feature can be enabled/disabled per table if necessary. You can read more about this feature here: [Announcing Delta Lake support in Real-Time Intelligence KQL Database](https://support.fabric.microsoft.com/blog/announcing-delta-support-in-real-time-analytics-kql-db?ft=All).
 
 ![alt text](assets/fabrta70.png)
+
+
+[Back to Table of Contents](#table-of-contents)
 
 #### Here's how to set this up
 
@@ -298,6 +325,8 @@ When activated it will constantly copy the KQL data to your Fabric OneLake in de
 3. Now the dialog **Turn on OneLake availibility** is shown. Ensure that **Apply to existing tables** is checked and click on the button **Turn on**.
 
    ![alt text](assets/image_task04_step03.png)
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 5. Create a new Eventstream
 
@@ -337,6 +366,8 @@ Then select **Create**.
 
    ![alt text](Manufacturing_Assets/3%20oeedata_es%20inital%20publish.png)
 
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 6. Define Eventstream topology
 
@@ -406,6 +437,8 @@ Next we have to create the Eventstream topology that will insert the streamed da
       * Source: EventHub - **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus-workorder-history**
       * Destination: Same settings, new table name of **bronze_workorderhistory**
 
+[Back to Table of Contents](#table-of-contents)
+
 ### 7. Setting up the Lakehouse
 
 In this task we will set up the Lakehouse that will contain additional information for our usecase and in which we will also make the data from the KQL Database accessible through the lakehouse.
@@ -433,6 +466,8 @@ In this task we will set up the Lakehouse that will contain additional informati
 6. Once the notebooks have been imported, we then will open and run the **Load_reference_data** notebook.  This will download the csv data from our source (GitHub), create our delta table in our lakehouse if it doesn't exist, then merging the data.  To run the notebook just select the **Run All** button on the notebook.
 
    ![alt text](Manufacturing_Assets/RunNotebook.png)
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 8. Build the KQL DB schema
 
@@ -483,6 +518,8 @@ In this section we will create all the silver tables, functions and enable updat
 
     ![alt text](Manufacturing_Assets/KQL_All_Objects.png)
 
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 10. Real-Time Dashboard
 
@@ -587,6 +624,8 @@ let startTime = latestTime - 6h;
 
    ![alt text](assets/image_task13_step14.png)
 
+[Back to Table of Contents](#table-of-contents)
+
 #### Impressions by hour
 
 - Visual type: **Area chart**.
@@ -669,6 +708,8 @@ SilverImpressions
    ![alt text](assets/fabrta58.png)
 
 6. (Optional) On the **Visual formatting** pane, scroll down and adjust the **Conditional formatting** as desired by clicking **+ Add rule**.
+
+[Back to Table of Contents](#table-of-contents)
 
 #### Average Page Load Time Anomalies
 
