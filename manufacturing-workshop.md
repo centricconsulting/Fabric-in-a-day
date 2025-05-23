@@ -651,7 +651,7 @@ silver_oeedata
    KQL Query to select param value from silver table
 
     ```kusto
-      silver_oeedata
+    silver_oeedata
       | distinct asset
     ```
 
@@ -688,14 +688,12 @@ let startTime = latestTime - 6h;
 
 1. Replace the content of the textbox by the code above. Click on the button **Run**. The query will be executed and the results will be shown in the table at the bottom. To create a visualisation click on the button **+ Add Visual**. This will open a pane at the right side of the browser.
 
-   ![alt text](Manufacturing_Assets/Add_Datasource.png)
-
-2. Format the visual by entering `Click by hour` in the field **Title**. Select **Area chart** in the combobox **Visual type**. Select Line Chart. Then click on the button **Apply changes**.
+2. Format the visual by entering `Total Units Produced` in the field **Title**. Select **Stat** in the combobox **Visual type**. Select Stat Chart. Then click on the button **Apply changes**.
 
    ![alt text](Manufacturing_Assets/totalunitsproduced.png)
 
 
-7. Click on the tab **Home** and then click on the button **New tile** again to proceed with the next visuals.
+7. Click on the tab **Home** and then click on **Save** Button. Now click on the button **New tile** again to proceed with the next visuals.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -794,9 +792,9 @@ Add a tile & paste the query below once. Note, this is a multi-statement query t
 - Visual type: **Table**
 
   ```kusto
- silver_workorderhistory
-| where (isempty(['plantParam']) or plant in (['plantParam'])) and (isempty(['machineParam']) or asset in (['machineParam']))
-| project woNumber, woDate, woType, assignedTo, plant, asset, line, taskDescription, priority, ingestionTime
+  silver_workorderhistory
+    | where (isempty(['plantParam']) or plant in (['plantParam'])) and (isempty(['machineParam']) or asset in (['machineParam']))
+    | project woNumber, woDate, woType, assignedTo, plant, asset, line, taskDescription, priority, ingestionTime
   ```
 
 ![alt text](Manufacturing_Assets/workorderhistory.png)
