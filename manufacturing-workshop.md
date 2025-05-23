@@ -631,11 +631,12 @@ silver_oeedata
   ![alt text](Manufacturing_Assets/plantparam.png)
 
    3. Second parameter name is Machine - VariableName - **machineParam**.
-   KQL Query to select param value from silver table 
+   KQL Query to select param value from silver table
+
     ```kusto
-    silver_oeedata
-    | distinct asset
-```
+      silver_oeedata
+      | distinct asset
+    ```
 
   Use the values provided in the screenshot below.
 
