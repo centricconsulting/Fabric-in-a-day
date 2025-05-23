@@ -322,7 +322,7 @@ When you log in for the first time, you will be required to set up Multi-Factor 
 
 <div class="info" data-title="Note">
   
-> The <a href="[https://fabric.microsoft.com/](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/eventhouse)" target="_blank">Eventhouse</a> [Eventhouse](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/eventhouse) is designed to handle real-time data streams efficiently, which lets organizations ingest, process, and analyze data in near real-time. Eventhouses are particularly useful for scenarios where **timely insights are crucial**. Eventhouses are **specifically tailored** to time-based, streaming events with multiple data formats. This data is automatically indexed and partitioned based on ingestion time.
+> The [Eventhouse](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/eventhouse) is designed to handle real-time data streams efficiently, which lets organizations ingest, process, and analyze data in near real-time. Eventhouses are particularly useful for scenarios where **timely insights are crucial**. Eventhouses are **specifically tailored** to time-based, streaming events with multiple data formats. This data is automatically indexed and partitioned based on ingestion time.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -383,18 +383,18 @@ Then select **Create**.
 
    ![alt text](Manufacturing_Assets/3%20Connect%20to%20EventHub.png)
 
-5. We will then need to create a new connection to our event hub in Azure.  To do this select **New Connection**.
+5. We will then **not** need to create a new connection to our event hub in Azure.  Select an **Existing Connection** from the dropdown. We will create 5 eventstreams for this training.
+   The first eventstream is oeedata_es - Select the connection **litmus-oeedata** for this eventstream
 
-   ![alt text](Manufacturing_Assets/3%20New%20EventHub%20Connection.png)
+   ![alt text](Manufacturing_Assets/SelectConnection.png)
 
-6. We then need to provide connection details for our EventHub.  For our demo you will place **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus** in the Event Hub space.
-   Once set, select the connect button.
+7. We then need to provide consumer group details for our EventHub. Each user is assigned their own consumer group. Enter the provided consumer group in the Consumer group text area. Then Click on Next and Add. Then Publish the Eventstream.
 
-   ![alt text](Manufacturing_Assets/3%20EventHub%20Connection%20Settings.png)
+   ![alt text](Manufacturing_Assets/consumergroup.png)
 
    Now the Eventstream will be published.
 
-7. After connecting, you should go to the eventstream editor.  Here we will want to do an intial publish to activate the stream.  This will allow us to work with the data as it's streamed in.  To publish hit the **Publish** button in the top right of the screen. 
+8. After connecting, you should go to the eventstream editor.  Here we will want to do an intial publish to activate the stream.  This will allow us to work with the data as it's streamed in.  To publish hit the **Publish** button in the top right of the screen. 
 
    ![alt text](Manufacturing_Assets/3%20oeedata_es%20inital%20publish.png)
 
@@ -431,7 +431,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
    | **Event processing before ingestion** | Ensure that this option is selected.    
    | **Destionation name**           | `oeedata-destination` |
    | **Workspace**                   | **Workspace Name assigned, in this example I will select Fabric Manufacturing Demo**       |
-   | **KQL Database**                | **oeedata_eh**          |
+   | **KQL Database**                | **oeedata_es**          |
    | **KQL Destination table**       | `bronze_oeedata`             |
    | **Input data format**                 | Ensure that the option **Json** is selected.   
 
