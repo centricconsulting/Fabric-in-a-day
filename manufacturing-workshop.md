@@ -595,10 +595,17 @@ In this section, we will build a real-time dashboard to visualize the streaming 
 
 
 1. Change to the workspace. To do so click on the icon of your workspace on the left pane. In our example the workspace is named **LabUser01** Your workspace name will be different based on your user credentials. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you.
+2. To create a new realtime dashboard click on the button **+ New Item** and the select **Real-Time Dashboard**
 
-2. First step is to add a Base Query Click on Base queries on the Ribbon and enter the base query provided below.
+   ![alt text](Manufacturing_Assets/NewDashboard.png)
+
+3. Enter the name `OEE Dashboard` in the field **New Real-Time Dashboard**. Then click on **Create**.
+
+   ![alt text](Manufacturing_Assets/OEEDashboard_Name.png)
+   
+4. First step is to add a Base Query Click on Base queries on the Ribbon and enter the base query provided below.
    This base query can be used to simplify the logic required in your dashboard.
-   Variable Name for base query _master_query
+   Variable Name for base query **_master_query**
    ![alt text](Manufacturing_Assets/baseQuery.png)
   To do this, select **Base queries**
   ```kusto
@@ -610,25 +617,18 @@ In this section, we will build a real-time dashboard to visualize the streaming 
   OEE, plant, line, asset,  A, Q, P, timestamp, state, PartitionId, uptime,
   defectiveUnits, totalUnits, EventProcessedUtcTime, EventEnqueuedUtcTime
   ```
-3. Save and Close the Base Query pop up. Next we will add two parameters in the RTI Dashboards. You will notice a default paramater is created for Time Range. We will not change the Time Range parameter. 
-   1. Plant - VariableName - plantParam
+5. Save and Close the Base Query pop up. Next we will add two parameters in the RTI Dashboards. You will notice a default paramater is created for Time Range. We will not change the Time Range parameter. 
+   1. First parameter name is Plant and VariableName is **plantParam**. Use the values provided in the screenshot below.
     ![alt text](Manufacturing_Assets/plantparam.png)
 
-   2. Machine - VariableName - machineParam
+   2. Second parameter name is Machine - VariableName - **machineParam**. Use the values provided in the screenshot below.
    ![alt text](Manufacturing_Assets/machineparam.png)
 
 All parameters will look like below under Manage Tab - Manage Parameters. 
+
  ![alt text](Manufacturing_Assets/allparams.png)
 
-3. To create a new realtime dashboard click on the button **+ New Item** and the select **Real-Time Dashboard**
-
-   ![alt text](Manufacturing_Assets/NewDashboard.png)
-
-4. Enter the name `OEE Dashboard` in the field **New Real-Time Dashboard**. Then click on **Create**.
-
-   ![alt text](Manufacturing_Assets/OEEDashboard_Name.png)
-
-5. An empty dashboard will be displayed. To add a visualisation click on the button **+ Add tile**.
+6. An empty dashboard is being displayed. To add a visualisation click on the button **+ Add tile**.
 
    ![alt text](Manufacturing_Assets/NewTile.png)
 
@@ -644,16 +644,13 @@ All parameters will look like below under Manage Tab - Manage Parameters.
 
    ![alt text](Manufacturing_Assets/Add_Datasource.png)
 
-Proceed to paste each query below, add a visual, and apply changes. 
+9. We will add the first visual. Click on New Tilw. Proceed to paste each query below, add a visual, and apply changes. 
 
    <div class="important" data-title="Note">
 
 > We will demo the steps for the very first Visual. From there on you can follow the exact same steps for all other visuals on your own.
 
    </div>
-
-
-
 
 
 #### Total Units Produced
