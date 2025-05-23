@@ -462,21 +462,45 @@ Next we have to create the Eventstream topology that will insert the streamed da
    | **KQL Destination table**       | `bronze_anomalyhistory`             |
    | **Input data format**                 | Ensure that the option **Json** is selected.  
      
+ * Downtime Reason History Event Stream Data
 
-   * Downtime Reason History Data
-      * New Eventsteam called **downtimereasonhistory_es**
-      * Source: EventHub - **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus-downtime-reasons**
-      * Destination: Same settings, new table name of **bronze_downtimereasonhistory**
+  | Field                           | Value               |
+   | :------------------------------ | :------------------ |
+   | **EventStream Name**                  |downtimereasonhistory_es|
+   | **Connection**                        | Ensure that **litmus-downtime-reasons** option is selected.    |
+   | **Event processing before ingestion** | Ensure that this option is selected.  |  
+   | **Destionation name**           | `downtime-reasons-destination` |
+   | **Workspace**                   | **Workspace Name assigned by Trainer**       |
+   | **KQL Database**                | **OEE_EH**          |
+   | **KQL Destination table**       | `bronze_downtimereasonhistory`             |
+   | **Input data format**                 | Ensure that the option **Json** is selected.  
 
-   * ScrapHistory Data
-      * New Eventsteam called **scraphistory_es**
-      * Source: EventHub - **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus-scrap-history**
-      * Destination: Same settings, new table name of **bronze_scraphistory**
+  * Scrap History Event Stream Data
 
-   * WorkOrderHistory Data
-      * New Eventsteam called **workorderhistory_es**
-      * Source: EventHub - **fabricroadshow-v1.servicebus.windows.net** for the Event Hub namespace and then place **litmus-workorder-history**
-      * Destination: Same settings, new table name of **bronze_workorderhistory**
+  | Field                           | Value               |
+   | :------------------------------ | :------------------ |
+   | **EventStream Name**                  |scraphistory_es|
+   | **Connection**                        | Ensure that **litmus-scrap-history** option is selected.    |
+   | **Event processing before ingestion** | Ensure that this option is selected.  |  
+   | **Destionation name**           | `downtime-reasons-destination` |
+   | **Workspace**                   | **Workspace Name assigned by Trainer**       |
+   | **KQL Database**                | **OEE_EH**          |
+   | **KQL Destination table**       | `bronze_scraphistory`             |
+   | **Input data format**                 | Ensure that the option **Json** is selected.
+  
+* Work Order History Event Stream Data
+
+  | Field                           | Value               |
+   | :------------------------------ | :------------------ |
+   | **EventStream Name**                  |workorderhistory_es|
+   | **Connection**                        | Ensure that **litmus-workorder-history** option is selected.    |
+   | **Event processing before ingestion** | Ensure that this option is selected.  |  
+   | **Destionation name**           | `downtime-reasons-destination` |
+   | **Workspace**                   | **Workspace Name assigned by Trainer**       |
+   | **KQL Database**                | **OEE_EH**          |
+   | **KQL Destination table**       | `bronze_workorderhistory`             |
+   | **Input data format**                 | Ensure that the option **Json** is selected.
+  
 
 [Back to Table of Contents](#table-of-contents)
 
