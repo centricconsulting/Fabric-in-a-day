@@ -49,6 +49,7 @@ See what real customers like [McLaren](https://www.linkedin.com/posts/shahdevang
 
 All the **code** in this tutorial can be found here:  
 [Centic Consulting - Data Engineer in a Day Repo](https://github.com/centricconsulting/Fabric-in-a-day/)
+
 [Back to Table of Contents](#table-of-contents)
 ## Modalities
 
@@ -80,6 +81,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - Enhanced capabilities allows us to source data into Eventstreams from Azure Event Hubs, IoT Hubs, Azure SQL Database (CDC), PostgreSQL Database (CDC), MySQL Database (CDC), Azure Cosmos Database (CDC), Google Cloud Pub/Sub, Amazon Kinesis Data Streams, Confluent Cloud Kafka, Azure Blog Storage events, Fabric Workspace Item events, Sample data or Custom endpoint (Custom App).
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-analytics/event-streams/overview).
+  
 [Back to Table of Contents](#table-of-contents)
 ### Shortcuts
 
@@ -90,6 +92,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - By enabling us to reference different storage locations, OneLake's Shortcuts provides a unified source of truth for all our data, within the Microsoft Fabric environment and ensures clarity regarding the origin of our data.
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-analytics/onelake-shortcuts?tabs=onelake-shortcut).
+  
 [Back to Table of Contents](#table-of-contents)
 ### Eventhouse
 
@@ -100,6 +103,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - Eventhouse's support Kusto Query Language (KQL) queries, T-SQL queries and Python. The data is automatically made available in delta-parquet format and can be easily accessed from Notebooks for more advanced transformations.
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-intelligence/eventhouse).
+  
 [Back to Table of Contents](#table-of-contents)
 ### KQL Update policies
 
@@ -110,18 +114,21 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 - In this solution, the data in derived silver layer tables (targets) of our medallion architecture is inserted upon ingestion into bronze tables (sources). Using Kusto's update policy feature, this appends transformed rows in real-time into the target table, as data is landing in a source table. This can also be set to run in as a transaction, meaning if the data from bronze fails to be transformed to silver, it will not be loaded to bronze either. By default, this is set to off allowing maximum throughput.
 
 - Feature [documentation](https://learn.microsoft.com/azure/data-explorer/kusto/management/update-policy).
+  
 [Back to Table of Contents](#table-of-contents)
 ### KQL Materialized Views
 
 - Materialized views expose an aggregation query over a source table, or over another materialized view. We will use materialized views to create the Gold Layer in our medallion architecture. Most common materialized views provide the current reading of a metric or statistics of metrics over time. They can also be backfilled with historical data; however, by default they are automatically populated by newly ingested data.
 
 - Feature [documentation](https://learn.microsoft.com/azure/data-explorer/kusto/management/materialized-views/materialized-view-overview).
+  
 [Back to Table of Contents](#table-of-contents)
 ### One Logical Copy
 
 - This feature creates a one logical copy of KQL Database data by turning on OneLake availability. Turning on OneLake availability for your KQL tables, database or Eventhouse means that you can query the data in your KQL database in Delta Lake format via other Fabric engines such as Direct Lake mode in Power BI, Warehouse, Lakehouse, Notebooks, and more. When activated, it will copy via mirroring the KQL data to your Fabric Datalake in delta-parquet format. Allowing you to shortcut tables from your KQL Database via OneLake to your Fabric Lakehouse, Data Warehouse, and also query the data in delta-parquet format using Spark Notebooks or the SQL-endpoint of the Lakehouse.
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-analytics/one-logical-copy).
+  
 [Back to Table of Contents](#table-of-contents)
 ### KQL Dynamic fields
 
