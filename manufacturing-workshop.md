@@ -528,7 +528,10 @@ In this task we will set up the Lakehouse that will contain additional informati
 
    ![alt text](Manufacturing_Assets/ImportNotebooks.png)
 
-6. Once the notebooks have been imported, we then will open and run the **Load_reference_data** notebook.  This will download the csv data from our source (GitHub), create our delta table in our lakehouse if it doesn't exist, then merging the data.  To run the notebook just select the **Run All** button on the notebook.
+6. Once the notebooks have been imported, we will attach the lakehouse OEE_LH to the notebook.
+    ![alt text](Manufacturing_Assets/attachlakehouse.png)
+   
+8. Once the lakehouse is attached, we then will open and run the **Load_reference_data** notebook.  This will download the csv data from our source (GitHub), create our delta table in our lakehouse if it doesn't exist, then merging the data.  To run the notebook just select the **Run All** button on the notebook.
 
    ![alt text](Manufacturing_Assets/RunNotebook.png)
 
