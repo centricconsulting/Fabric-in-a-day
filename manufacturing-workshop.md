@@ -594,29 +594,53 @@ In this section we will create all the silver tables, functions and enable updat
 In this section, we will build a real-time dashboard to visualize the streaming data and set it to refresh every 30 seconds. 
 
 
-1. Change to the workspace. To do so click on the icon of your workspace on the left pane. In our example the workspace is named **Fabric_Manufacturing_Demo**. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you.
+1. Change to the workspace. To do so click on the icon of your workspace on the left pane. In our example the workspace is named **LabUser01** Your workspace name will be different based on your user credentials. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you.
 
-2. To create a new realtime dashboard click on the button **+ New Item** and the select **Real-Time Dashboard**
+2. First step is to add a Base Query Click on Base queries on the Ribbon and enter the base query provided below.
+   This base query can be used to simplify the logic required in your dashboard.
+   Variable Name for base query _master_query
+   ![alt text](Manufacturing_Assets/baseQuery.png)
+  To do this, select **Base queries**
+  ```kusto
+  silver_oeedata
+  | join kind=leftouter external_table('dim_assetitem') 
+  on $left.asset == $right.asset and $left.line == $right.line and $left.plant == $right.plant
+  | extend A = availability, Q = quality, P = productivity, OEE = overallEquipmentEffectiveness
+  | project itemcode, itemdescription, machinemodel, serialnumber, 
+  OEE, plant, line, asset,  A, Q, P, timestamp, state, PartitionId, uptime,
+  defectiveUnits, totalUnits, EventProcessedUtcTime, EventEnqueuedUtcTime
+  ```
+3. Save and Close the Base Query pop up. Next we will add two parameters in the RTI Dashboards. You will notice a default paramater is created for Time Range. We will not change the Time Range parameter. 
+   1. Plant - VariableName - plantParam
+    ![alt text](Manufacturing_Assets/plantparam.png)
+
+   2. Machine - VariableName - machineParam
+   ![alt text](Manufacturing_Assets/machineparam.png)
+
+All parameters will look like below under Manage Tab - Manage Parameters. 
+ ![alt text](Manufacturing_Assets/allparams.png)
+
+3. To create a new realtime dashboard click on the button **+ New Item** and the select **Real-Time Dashboard**
 
    ![alt text](Manufacturing_Assets/NewDashboard.png)
 
-3. Enter the name `OEE Dashboard` in the field **New Real-Time Dashboard**. Then click on **Create**.
+4. Enter the name `OEE Dashboard` in the field **New Real-Time Dashboard**. Then click on **Create**.
 
    ![alt text](Manufacturing_Assets/OEEDashboard_Name.png)
 
-4. An empty dashboard will be displayed. To add a visualisation click on the button **+ Add tile**.
+5. An empty dashboard will be displayed. To add a visualisation click on the button **+ Add tile**.
 
    ![alt text](Manufacturing_Assets/NewTile.png)
 
-5. Click on the Button **+ Data source**.
+6. Click on the Button **+ Data source**.
 
    ![alt text](Manufacturing_Assets/DashboardDataSource.png)
 
-6. In the Window **One Lake Data Hub** select the Eventhouse **OEE_EH**. Then click on **Connect**.
+7. In the Window **One Lake Data Hub** select the Eventhouse **OEE_EH**. Then click on **Connect**.
 
    ![alt text](Manufacturing_Assets/SelectOEE_EH.png)
 
-7. As name keep the given name `OEE_EH`. Set the **Database** to **OEE_EH** and click on the button **Add**.
+8. As name keep the given name `OEE_EH`. Set the **Database** to **OEE_EH** and click on the button **Add**.
 
    ![alt text](Manufacturing_Assets/Add_Datasource.png)
 
@@ -629,18 +653,7 @@ Proceed to paste each query below, add a visual, and apply changes.
    </div>
 
 
-Next we will create a base query.  This base query can be used to simplify the logic required in your dashboard.
- ![alt text](Manufacturing_Assets/baseQuery.png)
-To do this, select **Base queries**
-```kusto
-silver_oeedata
-| join kind=leftouter external_table('dim_assetitem') 
-on $left.asset == $right.asset and $left.line == $right.line and $left.plant == $right.plant
-| extend A = availability, Q = quality, P = productivity, OEE = overallEquipmentEffectiveness
-| project itemcode, itemdescription, machinemodel, serialnumber, 
-OEE, plant, line, asset,  A, Q, P, timestamp, state, PartitionId, uptime,
-defectiveUnits, totalUnits, EventProcessedUtcTime, EventEnqueuedUtcTime
-```
+
 
 
 #### Total Units Produced
