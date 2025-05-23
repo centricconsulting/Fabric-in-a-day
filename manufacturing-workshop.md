@@ -602,8 +602,25 @@ In this section, we will build a real-time dashboard to visualize the streaming 
 3. Enter the name `OEE Dashboard` in the field **New Real-Time Dashboard**. Then click on **Create**.
 
    ![alt text](Manufacturing_Assets/OEEDashboard_Name.png)
+
+An empty dashboard is being displayed. To add a visualisation click on the button **+ Add tile**.
+
+   ![alt text](Manufacturing_Assets/NewTile.png)
+
+4. Click on the Button **+ Data source**.
+
+   ![alt text](Manufacturing_Assets/DashboardDataSource.png)
+
+5. In the Window **One Lake Data Hub** select the Eventhouse **OEE_EH**. Then click on **Connect**.
+
+   ![alt text](Manufacturing_Assets/SelectOEE_EH.png)
+
+6. As name keep the given name `OEE_EH`. Set the **Database** to **OEE_EH** and click on the button **Add**.
+
+   ![alt text](Manufacturing_Assets/Add_Datasource.png)
+
    
-4. First step is to add a Base Query Click on Base queries on the Ribbon and enter the base query provided below.
+7. First step is to add a Base Query Click on Base queries on the Ribbon and enter the base query provided below.
    This base query can be used to simplify the logic required in your dashboard.
    Variable Name for base query **_master_query**
    ![alt text](Manufacturing_Assets/baseQuery.png)
@@ -617,7 +634,7 @@ In this section, we will build a real-time dashboard to visualize the streaming 
   OEE, plant, line, asset,  A, Q, P, timestamp, state, PartitionId, uptime,
   defectiveUnits, totalUnits, EventProcessedUtcTime, EventEnqueuedUtcTime
   ```
-5. Save and Close the Base Query pop up. Next we will add two parameters in the RTI Dashboards. You will notice a default paramater is created for Time Range. We will not change the Time Range parameter. 
+8. Save and Close the Base Query pop up. Next we will add two parameters in the RTI Dashboards. You will notice a default paramater is created for Time Range. We will not change the Time Range parameter. 
    1. First parameter name is Plant and VariableName is **plantParam**.
   KQL Query to select param value from silver table
 
@@ -646,23 +663,8 @@ All parameters will look like below under Manage Tab - Manage Parameters.
 
 ![alt text](Manufacturing_Assets/allparams.png)
 
-6. An empty dashboard is being displayed. To add a visualisation click on the button **+ Add tile**.
 
-   ![alt text](Manufacturing_Assets/NewTile.png)
-
-6. Click on the Button **+ Data source**.
-
-   ![alt text](Manufacturing_Assets/DashboardDataSource.png)
-
-7. In the Window **One Lake Data Hub** select the Eventhouse **OEE_EH**. Then click on **Connect**.
-
-   ![alt text](Manufacturing_Assets/SelectOEE_EH.png)
-
-8. As name keep the given name `OEE_EH`. Set the **Database** to **OEE_EH** and click on the button **Add**.
-
-   ![alt text](Manufacturing_Assets/Add_Datasource.png)
-
-9. We will add the first visual. Click on New Tilw. Proceed to paste each query below, add a visual, and apply changes. 
+9. We will add the first visual. Click on New Tile. Proceed to paste each query below, add a visual, and apply changes. 
 
    <div class="important" data-title="Note">
 
