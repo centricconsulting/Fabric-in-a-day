@@ -456,7 +456,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
    | **Eventstream Name**                  |AnomalyHistory_es|
    | **Connection**                        | Ensure that **litmus-anomaly-history** option is selected.    |
    | **Event processing before ingestion** | Ensure that this option is selected.  |  
-   | **Destionation name**           | `anomaly-history-destination` |
+   | **Destination name**           | `anomaly-history-destination` |
    | **Workspace**                   | **Workspace Name assigned by Trainer**       |
    | **KQL Database**                | **OEE_EH**          |
    | **KQL Destination table**       | `bronze_anomalyhistory`             |
