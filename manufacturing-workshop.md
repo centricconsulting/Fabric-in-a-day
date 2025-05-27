@@ -458,7 +458,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
 4. This will then display a screen for entering in details of where we want to write our data to.
 
    ![alt text](Manufacturing_Assets/3%20Eventstream%20Destination%20Screen.png)
-   ![alt text](Manufacturing_Assets/Eventhousedetails.png)
+   ![alt text](Manufacturing_Assets/eventhousedetails.png)
 
 6. Provide the following values in the pane **Eventhouse** on the left side. For the KQL Destination Table, we will need to select Create new and then set the name.  Once filled out, we will then click on **Save**.
 
