@@ -589,7 +589,7 @@ In this section we will create all the silver tables, functions and enable updat
 
 [Back to Table of Contents](#table-of-contents)
 
-### 10. Real-Time Dashboard
+### 9. Real-Time Dashboard
 
 In this section, we will build a Real-Time Dashboard to visualize the streaming data and set it to refresh every 30 seconds. 
 
@@ -832,7 +832,9 @@ In this section we will enable auto-refresh so the dashboard will be automatical
 3. Click on the tab **Home** and then click on the button **Save**.
 
 
-### 11. Data Activator
+[Back to Table of Contents](#table-of-contents)
+
+### 10. Data Activator
 
 In this section we will create a Reflex Alert that will send an Email Message when a value meets a certain threshold.
 
@@ -852,7 +854,10 @@ In this section we will create a Reflex Alert that will send an Email Message wh
 > The Reflex item will appear in your workspace and you can edit the Reflex trigger action. The same Reflex item can also trigger multiple actions. 
 </div>
 
-### 15. Bonus Challenges
+
+[Back to Table of Contents](#table-of-contents)
+
+### 11. Bonus Challenges
 
 #### Build Power BI report using the data in Eventhouse
 
@@ -866,13 +871,17 @@ Using the Fabric Events in Real-Time hub, build a pipeline that sends link to th
 
 Add Reflex as a destination to your Eventstream and create an email alert everytime number of impressions exceed a value of your choice 3 times every 10 minutes.
 
-### 16. Stop the notebook
+### 12. Stop the notebook
 
 At this point you've completed the lab, so you may stop running the notebook.
 
 1. Open the notebook **Generate synthetic events** from your workspace and click the button **Cancel all** in the toolbar at the top.
 
    ![alt text](assets/image_task15_step01.png)
+
+
+[Back to Table of Contents](#table-of-contents)
+
 
 ## THAT's ALL FOLKS !!
 
