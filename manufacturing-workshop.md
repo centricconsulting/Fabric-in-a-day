@@ -514,7 +514,7 @@ In this task we will set up the Lakehouse that will contain additional informati
 
 2. Click on the button **+ New Item** in the toolbar and in the pop-up window click on the tile **Lakehouse**.
 
-   ![alt text](assets/image_task09_step03.png) #todo - Update image 
+   ![alt text](assets/image_task09_step03.png)  
 
 3. In the dialog **New Lakehouse** enter `OEE_LH` as name for the new Lakehouse. Ensure that the checkbox **Lakehouse Schemas (Public Preview)** is not checked. Then click on the button **Create**
 
