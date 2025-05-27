@@ -66,6 +66,8 @@ sections_title:
 - [Continue your learning](#continue-your-learning)
 
 
+---
+
 
 # Introduction
 
@@ -105,6 +107,7 @@ All the **code** in this tutorial can be found here:
 - [Todd Lyman](https://www.linkedin.com/in/toddlyman/), Senior Architect
 
 [Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Fabric Real Time Intelligence
@@ -221,10 +224,9 @@ Let's cover the key features of Real-Time Intelligence and how we plan to use th
 - Feature [documentation](https://learn.microsoft.com/fabric/get-started/copilot-real-time-intelligence).
 
 
----
-
 [Back to Table of Contents](#table-of-contents)
 
+---
 
 
 ## Architecture
@@ -238,6 +240,9 @@ Real-Time Intelligence allows organizations to ingest, process, analyze and, que
 Using Real-Time Intelligence enables faster, more accurate decision-making and accelerated time to insight.
 
 [Back to Table of Contents](#table-of-contents)
+
+---
+
 ## Pre-requisites
 
 - Recommended material to review (at least one) prior to this lab, however it's not required:
