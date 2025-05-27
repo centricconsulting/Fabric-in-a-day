@@ -4,9 +4,9 @@
 - [Modalities](#modalities)
 - [Authors](#authors)
 - [Fabric Real Time Intelligence](#fabric-real-time-intelligence)
-  - [Eventstreams](#eventstreams)
+  - [Eventstreams](#Eventstreams)
   - [Shortcuts](#shortcuts)
-  - [Eventhouse](#eventhouse)
+  - [Eventhouse](#Eventhouse)
   - [KQL Update policies](#kql-update-policies)
   - [KQL Materialized Views](#kql-materialized-views)
   - [One Logical Copy](#one-logical-copy)
@@ -23,11 +23,11 @@
 - [Building the platform](#building-the-platform)
   - [1. Login to Lab Environment](#1-login-to-lab-environment)
   - [2. Fabric Workspace](#2-fabric-workspace)
-  - [3. Create a new Eventhouse](#3-create-a-new-eventhouse)
+  - [3. Create a new Eventhouse](#3-create-a-new-Eventhouse)
   - [4. Enable OneLake Availability](#4-enable-onelake-availability)
-  - [5. Create a new Eventstream](#5-create-a-new-eventstream)
-  - [6. Define Eventstream topology](#6-define-eventstream-topology)
-  - [7. Setting up the Lakehouse](#7-setting-up-the-lakehouse)
+  - [5. Create a new Eventstream](#5-create-a-new-Eventstream)
+  - [6. Define Eventstream topology](#6-define-Eventstream-topology)
+  - [7. Setting up the Lakehouse](#7-setting-up-the-Lakehouse)
   - [8. Build the KQL DB schema](#8-build-the-kql-db-schema)
   - [10. Real-Time Dashboard](#10-real-time-dashboard)
   - [11. Data Activator](#11-data-activator)
@@ -79,21 +79,21 @@ All the **code** in this tutorial can be found here:
 
 ## Fabric Real Time Intelligence
 
-Let's cover the key-features of Real-Time Intelligence and how we plan to use them for our architecture.
+Let's cover the key features of Real-Time Intelligence and how we plan to use them for our architecture.
 
 ### Eventstreams
 
 - Eventstreams allow us to bring real-time events (including Kafka endpoints) into Fabric, transform them, and then route them to various destinations without writing any code (no-code).
 
 
-- Enhanced capabilities allows us to source data into Eventstreams from Azure Event Hubs, IoT Hubs, Azure SQL Database (CDC), PostgreSQL Database (CDC), MySQL Database (CDC), Azure Cosmos Database (CDC), Google Cloud Pub/Sub, Amazon Kinesis Data Streams, Confluent Cloud Kafka, Azure Blog Storage events, Fabric Workspace Item events, Sample data or Custom endpoint (Custom App).
+- Enhanced capabilities allow us to source data into Eventstreams from Azure Event Hubs, IoT Hubs, Azure SQL Database (CDC), PostgreSQL Database (CDC), MySQL Database (CDC), Azure Cosmos Database (CDC), Google Cloud Pub/Sub, Amazon Kinesis Data Streams, Confluent Cloud Kafka, Azure Blog Storage events, Fabric Workspace Item events, Sample data or Custom endpoint (Custom App).
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-analytics/event-streams/overview).
   
 [Back to Table of Contents](#table-of-contents)
 ### Shortcuts
 
-- Shortcuts enable the creation of a live connections between OneLake and data sources, whether internal or external to Azure. This allows us to retrieve data from these locations as if they were seamlessly integrated into Microsoft Fabric.
+- Shortcuts enable the creation of a live connection between OneLake and data sources, whether internal or external to Azure. This allows us to retrieve data from these locations as if they were seamlessly integrated into Microsoft Fabric.
 
 - A shortcut is a schema entity that references data stored external to a KQL database in your cluster. In Lakehouse(s), Eventhouse(s), or KQL Databases it's possible to create shortcuts referencing internal locations within Microsoft Fabric, ADLS Gen2, Spark Notebooks, AWS S3 storage accounts, or Microsoft Dataverse.
 
@@ -108,9 +108,9 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 - An Eventhouse is the best place to store streaming data in Fabric. It provides a highly scalable analytics system with built-in Machine Learning capabilities for discrete analytics over highly-granular data. It's useful for any scenario that includes event-based data, for example, telemetry and log data, time series and IoT data, security and compliance logs, or financial records.
 
-- Eventhouse's support Kusto Query Language (KQL) queries, T-SQL queries and Python. The data is automatically made available in delta-parquet format and can be easily accessed from Notebooks for more advanced transformations.
+- Eventhouses support Kusto Query Language (KQL) queries, T-SQL queries and Python. The data is automatically made available in delta-parquet format and can be easily accessed from Notebooks for more advanced transformations.
 
-- Feature [documentation](https://learn.microsoft.com/fabric/real-time-intelligence/eventhouse).
+- Feature [documentation](https://learn.microsoft.com/fabric/real-time-intelligence/Eventhouse).
   
 [Back to Table of Contents](#table-of-contents)
 ### KQL Update policies
@@ -119,7 +119,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 - Multiple update policies can be defined on a single table, allowing for different transformations and saving data to multiple tables simultaneously. **Target** tables can have a different schema, retention policy, and other policies than the **Source** table.
 
-- In this solution, the data in derived silver layer tables (targets) of our medallion architecture is inserted upon ingestion into bronze tables (sources). Using Kusto's update policy feature, this appends transformed rows in real-time into the target table, as data is landing in a source table. This can also be set to run in as a transaction, meaning if the data from bronze fails to be transformed to silver, it will not be loaded to bronze either. By default, this is set to off allowing maximum throughput.
+- In this solution, the data in derived silver layer tables (targets) of our medallion architecture is inserted upon ingestion into bronze tables (sources). Using Kusto's update policy feature, this appends transformed rows in real-time into the target table, as data is landing in a source table. This can also be set to run as a transaction, meaning if the data from bronze fails to be transformed to silver, it will not be loaded to bronze either. By default, this is set to off allowing maximum throughput.
 
 - Feature [documentation](https://learn.microsoft.com/azure/data-explorer/kusto/management/update-policy).
   
@@ -140,7 +140,7 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 [Back to Table of Contents](#table-of-contents)
 ### KQL Dynamic fields
 
-- Dynamic fields are a powerful feature of KQL database's that support evolving schema changes and object polymorphism, allowing the storage/querying of different event types that have a common denominator of base fields.
+- Dynamic fields are a powerful feature of KQL databases that support evolving schema changes and object polymorphism, allowing the storage/querying of different event types that have a common denominator of base fields.
 
 - Feature [documentation](https://learn.microsoft.com/azure/data-explorer/kusto/query/scalar-data-types/dynamic).
   
@@ -149,9 +149,9 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 - KQL is also known as the language of the cloud. It's available in many other services such as Microsoft Sentinel, Azure Monitor, Azure Resource Graph and Microsoft Defender. The code-name **Kusto** engine was invented by 4 engineers from the Power BI team over 10 years ago and has been implemented across all Microsoft services including Github Copilot, LinkedIn, Azure, Office 365, and XBOX.
 
-- KQL queries are easy to write, read and edit. The language is most commonly used to analyze logs, sign-on events, application traces, diagnostics, signals, metrics and much more. Supports multi-statement queries, relational operators such as filters (where clauses), union, joins aggregations to produce a tabular output. It allows the ability to simply pipe (|) additional commands for ad-hoc analytics without needing to re-write entire queries. It has similarities to PowerShell, Excel functions, LINQ, function SQL, and OS Shell (Bash). It supports DML statements, DDL statements (referred to as Control Commands), built-in machine learning operators for forecasting & anomaly detection, plus more... including in-line Python & R-Lang.
+- KQL queries are easy to write, read and edit. The language is most commonly used to analyze logs, sign-on events, application traces, diagnostics, signals, metrics and much more. Supports multi-statement queries, relational operators such as filters (where clauses), union, joins aggregations to produce a tabular output. It allows the ability to simply pipe (|) additional commands for ad-hoc analytics without needing to re-write entire queries. It has similarities to PowerShell, Excel functions, LINQ, SQL functions, and OS Shell (Bash). It supports DML statements, DDL statements (referred to as Control Commands), built-in machine learning operators for forecasting & anomaly detection, plus more... including in-line Python & R-Lang.
 
-- In this solution, KQL commands will be automatically created and executed by eventstream to ingest data when configuring the Eventhouse KQL Database destination in the Eventstream. These commands will create the respective 'bronze' tables. Secondly, the control commands will be issued in a database script that automate creation of additional schema items such as Tables, Shortcuts, Functions, Policies and Materialized-Views.
+- In this solution, KQL commands will be automatically created and executed by Eventstream to ingest data when configuring the Eventhouse KQL Database destination in the Eventstream. These commands will create the respective 'bronze' tables. Secondly, the control commands will be issued in a database script that automate creation of additional schema items such as Tables, Shortcuts, Functions, Policies and Materialized-Views.
 - Feature [documentation](https://learn.microsoft.com/azure/data-explorer/kusto/query/).
   
 [Back to Table of Contents](#table-of-contents)
@@ -159,27 +159,27 @@ Let's cover the key-features of Real-Time Intelligence and how we plan to use th
 
 ![Real-Time Dashboards](assets/RTAMenu.png)
 
-- While similar to Power BI's dashboard functionality, Real-time Dashboards have a different use case. Real-time Dashboards are commonly used for operational decision making, rather than the business intelligence use cases Power BI targets. Power BI supports more advanced visualizations and provides a rich data-story capabilities. Real-time Dashboards refresh very fast and allow with ease to toggle between visuals, and analysts to pro-developer can explore/edit queries without needing to download a desktop tool. This makes the experience simpler for analysts to understand and visualize large volumes of highly-granular data.
+- While similar to Power BI's dashboard functionality, Real-Time Dashboards have a different use case. Real-Time Dashboards are commonly used for operational decision making, rather than the business intelligence use cases Power BI targets. Power BI supports more advanced visualizations and provides a rich data-story capabilities. Real-Time Dashboards refresh very fast and allow with ease to toggle between visuals, and analysts to pro-developer can explore/edit queries without needing to download a desktop tool. This makes the experience simpler for analysts to understand and visualize large volumes of highly-granular data.
 
-- Real-time Dashboard's also support sharing while retaining permission controls, setting of alerts via Data Activator, and automatic refresh with a minimum frequency of 30 seconds.
+- Real-Time Dashboards also support sharing while retaining permission controls, setting of alerts via Data Activator, and automatic refresh with a minimum frequency of 30 seconds.
 
 - Feature [documentation](https://learn.microsoft.com/fabric/real-time-intelligence/dashboard-real-time-create).
 
 [Back to Table of Contents](#table-of-contents)
 ### Data Activator
 
-- Data Activator (code-name Reflex) is a no-code experience in Microsoft Fabric for automatically taking actions when patterns or conditions are detected in changing data. It monitors data in Power BI reports, Eventstreams items and Real-time Dashboards, for when the data hits certain thresholds or matches other patterns. It then triggers the appropriate action, such as alerting users or kicking off Power Automate workflows.
+- Data Activator (code-name Reflex) is a no-code experience in Microsoft Fabric for automatically taking actions when patterns or conditions are detected in changing data. It monitors data in Power BI reports, Eventstreams items and Real-Time Dashboards, for when the data hits certain thresholds or matches other patterns. It then triggers the appropriate action, such as alerting users or kicking off Power Automate workflows.
 
 - Some common use cases are:
 
-  - Run Ads when same-store sales decline.
+  - Run Ads when same store sales decline.
   - Alert store managers to move food from failing freezers before it spoils.
   - Retain customers who had a bad experience by tracking their journey through apps, websites etc.
   - Help logistics companies find lost shipments proactively by starting an investigation when package status isn't updated for a certain length of time.
   - Alert account teams when customers fall behind with conditional thresholds.
   - Track data pipeline quality, to either re-run jobs, alert for detected failures or anomalies.
 
-- In this solution, we will set an alert in our Real-time Dashboard to **Message me in Teams** functionality.
+- In this solution, we will set an alert in our Real-Time Dashboard to **Message me in Teams** functionality.
 
 - Feature [documentation](https://learn.microsoft.com/fabric/data-activator/data-activator-introduction).
 
@@ -322,7 +322,7 @@ When you log in for the first time, you will be required to set up Multi-Factor 
 
 <div class="info" data-title="Note">
   
-> The [Eventhouse](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/eventhouse) is designed to handle real-time data streams efficiently, which lets organizations ingest, process, and analyze data in near real-time. Eventhouses are particularly useful for scenarios where **timely insights are crucial**. Eventhouses are **specifically tailored** to time-based, streaming events with multiple data formats. This data is automatically indexed and partitioned based on ingestion time.
+> The [Eventhouse](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/Eventhouse) is designed to handle real-time data streams efficiently, which lets organizations ingest, process, and analyze data in near real-time. Eventhouses are particularly useful for scenarios where **timely insights are crucial**. Eventhouses are **specifically tailored** to time-based, streaming events with multiple data formats. This data is automatically indexed and partitioned based on ingestion time.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -344,7 +344,7 @@ When activated it will constantly copy the KQL data to your Fabric OneLake in de
 
    ![alt text](Manufacturing_Assets/3.3%20KQL%20Database%20OneLake%20Availability.png)
 
-2. After selecting the KQL Database click on the switch **availibility** to activate the OneLake availibility as shown in the screenshot.
+2. After selecting the KQL Database click on the switch **availability** to activate the OneLake availability as shown in the screenshot.
 
    ![alt text](Manufacturing_Assets/3.3%20KQL%20OneLake%20Availability.png)
 
@@ -354,7 +354,7 @@ When activated it will constantly copy the KQL data to your Fabric OneLake in de
 
    </div>
 
-3. Now the dialog **Turn on OneLake availibility** is shown. Ensure that **Apply to existing tables** is checked and click on the button **Turn on**.
+3. Now the dialog **Turn on OneLake availability** is shown. Ensure that **Apply to existing tables** is checked and click on the button **Turn on**.
 
    ![alt text](assets/image_task04_step03.png)
 
@@ -362,7 +362,7 @@ When activated it will constantly copy the KQL data to your Fabric OneLake in de
 
 ### 5. Create a new Eventstream
 
-In this section we will be streaming events from an Eventhub deployed to Azure. The events will be streamed into an eventstream and consumed by our Eventhouse KQL Database.
+In this section we will be streaming events from an Eventhub deployed to Azure. The events will be streamed into an Eventstream and consumed by our Eventhouse KQL Database.
 
 
 1. Select your Workspace in the left pane. In our example it is **Fabric_Manufacturing_Demo**. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you. Then click on **+ New Item**. In the popout window scroll a little bit down and select **Eventstream**.
@@ -383,8 +383,8 @@ Then select **Create**.
 
    ![alt text](Manufacturing_Assets/3%20Connect%20to%20EventHub.png)
 
-5. We will then **not** need to create a new connection to our event hub in Azure.  Select an **Existing Connection** from the dropdown. We will create 5 eventstreams for this training.
-   The first eventstream is oeedata_es - Select the connection **litmus-oeedata** for this eventstream
+5. We will then **not** need to create a new connection to our event hub in Azure.  Select an **Existing Connection** from the dropdown. We will create 5 Eventstreams for this training.
+   The first Eventstream is oeedata_es - Select the connection **litmus-oeedata** for this Eventstream
 
    ![alt text](Manufacturing_Assets/SelectConnection.png)
 
@@ -394,7 +394,7 @@ Then select **Create**.
 
    Now the Eventstream will be published.
 
-8. After connecting, you should go to the eventstream editor.  Here we will want to do an intial publish to activate the stream.  This will allow us to work with the data as it's streamed in.  To publish hit the **Publish** button in the top right of the screen. 
+8. After connecting, you should go to the Eventstream editor.  Here we will want to do an initial publish to activate the stream.  This will allow us to work with the data as it's streamed in.  To publish hit the **Publish** button in the top right of the screen. 
 
    ![alt text](Manufacturing_Assets/3%20oeedata_es%20inital%20publish.png)
 
@@ -408,7 +408,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
 
 2. Click on **Edit** in the top toolbar.
 
-   ![alt text](Manufacturing_Assets/3%20Edit%20EventStream.png)
+   ![alt text](Manufacturing_Assets/3%20Edit%20Eventstream.png)
 
 3. Click on the node **Transform events or add Destination** and select **Eventhouse** under Destinations from the menu.
 
@@ -422,15 +422,15 @@ Next we have to create the Eventstream topology that will insert the streamed da
 
 4. This will then display a screen for entering in details of where we want to write our data to.
 
-   ![alt text](Manufacturing_Assets/3%20EventStream%20Destination%20Screen.png)
-   ![alt text](Manufacturing_Assets/eventhousedetails.png)
+   ![alt text](Manufacturing_Assets/3%20Eventstream%20Destination%20Screen.png)
+   ![alt text](Manufacturing_Assets/Eventhousedetails.png)
 
 6. Provide the following values in the pane **Eventhouse** on the left side. For the KQL Destination Table, we will need to select Create new and then set the name.  Once filled out, we will then click on **Save**.
 
    | Field                           | Value               |
    | :------------------------------ | :------------------ |
    | **Event processing before ingestion** | Ensure that this option is selected.    
-   | **Destionation name**           | `oeedata-destination` |
+   | **Destination name**           | `oeedata-destination` |
    | **Workspace**                   | **Workspace Name assigned by Trainer**       |
    | **KQL Database**                | **OEE_EH**          |
    | **KQL Destination table**       | `bronze_oeedata`             |
@@ -448,12 +448,12 @@ Next we have to create the Eventstream topology that will insert the streamed da
 
    ![alt text](Manufacturing_Assets/3%20Publish%20Eventstream%20Final.png)
 
-8. We will then need to repeat the same steps 4 additional times. Create 4 more eventstreams. Go back to the workspace. Click on New Item.  Details for 4 additional eventstreams are below.
- * AnamolyHistory Event Stream Data
+8. We will then need to repeat the same steps 4 additional times. Create 4 more Eventstreams. Go back to the workspace. Click on New Item.  Details for 4 additional Eventstreams are below.
+ * AnomalyHistory Event Stream Data
 
   | Field                           | Value               |
    | :------------------------------ | :------------------ |
-   | **EventStream Name**                  |anamolyhistory_es|
+   | **Eventstream Name**                  |AnomalyHistory_es|
    | **Connection**                        | Ensure that **litmus-anomaly-history** option is selected.    |
    | **Event processing before ingestion** | Ensure that this option is selected.  |  
    | **Destionation name**           | `anomaly-history-destination` |
@@ -466,7 +466,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
 
   | Field                           | Value               |
    | :------------------------------ | :------------------ |
-   | **EventStream Name**                  |downtimereasonhistory_es|
+   | **Eventstream Name**                  |downtimereasonhistory_es|
    | **Connection**                        | Ensure that **litmus-downtime-reasons** option is selected.    |
    | **Event processing before ingestion** | Ensure that this option is selected.  |  
    | **Destionation name**           | `downtime-reasons-destination` |
@@ -479,7 +479,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
 
   | Field                           | Value               |
    | :------------------------------ | :------------------ |
-   | **EventStream Name**                  |scraphistory_es|
+   | **Eventstream Name**                  |scraphistory_es|
    | **Connection**                        | Ensure that **litmus-scrap-history** option is selected.    |
    | **Event processing before ingestion** | Ensure that this option is selected.  |  
    | **Destionation name**           | `scrap-history-destination` |
@@ -492,7 +492,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
 
   | Field                           | Value               |
    | :------------------------------ | :------------------ |
-   | **EventStream Name**                  |workorderhistory_es|
+   | **Eventstream Name**                  |workorderhistory_es|
    | **Connection**                        | Ensure that **litmus-workorder-history** option is selected.    |
    | **Event processing before ingestion** | Ensure that this option is selected.  |  
    | **Destination name**           | `workorder-history-destination` |
@@ -506,19 +506,19 @@ Next we have to create the Eventstream topology that will insert the streamed da
 
 ### 7. Setting up the Lakehouse
 
-In this task we will set up the Lakehouse that will contain additional information for our usecase and in which we will also make the data from the KQL Database accessible through the lakehouse.
+In this task we will set up the Lakehouse that will contain additional information for our usecase and in which we will also make the data from the KQL Database accessible through the Lakehouse.
 
 
 1. To create a Lakehouse we first have to return to the workspace where all other objects are in. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you.
 
 
-2. Click on the button **+ New Item** in the toolbar and in the popin window click on the tile **Lakehouse**.
+2. Click on the button **+ New Item** in the toolbar and in the pop-up window click on the tile **Lakehouse**.
 
    ![alt text](assets/image_task09_step03.png) #todo - Update image 
 
-3. In the dialog **New lakehouse** enter `OEE_LH` as name for the new lakehouse. Ensure that the checkbox **Lakehouse schemas (Public Preview)** is not checked. Then click on the button **Create**
+3. In the dialog **New Lakehouse** enter `OEE_LH` as name for the new Lakehouse. Ensure that the checkbox **Lakehouse Schemas (Public Preview)** is not checked. Then click on the button **Create**
 
-   ![alt text](Manufacturing_Assets/New%20Lakehouse.png)
+   ![alt text](Manufacturing_Assets/New%20lakehouse.png)
 
 4. We then create two notebooks that will be used to bring in reference data to enrich our streaming data.  To make this easier, we've uploaded these notebooks to the repo for you to import.  Go to the GitHub repo and download the notebooks **common_functions.ipynb** and **Load_reference_data.ipynb** under the notebook folder.
 
@@ -528,10 +528,10 @@ In this task we will set up the Lakehouse that will contain additional informati
 
    ![alt text](Manufacturing_Assets/ImportNotebooks.png)
 
-6. Once the notebooks have been imported, we will attach the lakehouse OEE_LH to the notebook.
+6. Once the notebooks have been imported, we will attach the Lakehouse OEE_LH to the notebook.
     ![alt text](Manufacturing_Assets/attachlakehouse.png)
    
-8. Once the lakehouse is attached, we then will open and run the **Load_reference_data** notebook.  This will download the csv data from our source (GitHub), create our delta table in our lakehouse if it doesn't exist, then merging the data.  To run the notebook just select the **Run All** button on the notebook.
+8. Once the Lakehouse is attached, we then will open and run the **Load_reference_data** notebook.  This will download the csv data from our source (GitHub), create our delta table in our Lakehouse if it doesn't exist, then merging the data.  To run the notebook just select the **Run All** button on the notebook.
 
    ![alt text](Manufacturing_Assets/RunNotebook.png)
 
@@ -539,7 +539,7 @@ In this task we will set up the Lakehouse that will contain additional informati
 
 ### 8. Build the KQL DB schema
 
-In this section we will create all the silver tables, functions and enable update policies and in our Eventhouse KQL Database. One of the tables (`dim_assetitem`) are shortcuts to the lakehouse and the data is **NOT** being copied into our KQL Database.
+In this section we will create all the silver tables, functions and enable update policies and in our Eventhouse KQL Database. One of the tables (`dim_assetitem`) are shortcuts to the Lakehouse and the data is **NOT** being copied into our KQL Database.
 
 
 1. Open the KQL Database **OEE_EH** in the Eventhouse of your Fabric Workspace. To do so click on the Icon of the Eventhouse in the left toolbar.
@@ -552,7 +552,7 @@ In this section we will create all the silver tables, functions and enable updat
 
    ![alt text](assets/image_task12_step03.png)
 
-4. Select the lakehouse **OEE_LH** and click on the button **Next**.
+4. Select the Lakehouse **OEE_LH** and click on the button **Next**.
 
    ![alt text](Manufacturing_Assets/ShortcutLakehouse.png)
 
@@ -575,7 +575,7 @@ In this section we will create all the silver tables, functions and enable updat
 
    ![alt text](Manufacturing_Assets/Explore%20Data.png)
 
-8. We will use the queryset to create our downsteam tables and functions for the other layers of our medallion architecture
+8. We will use the queryset to create our downstream tables and functions for the other layers of our medallion architecture
 
    ![alt text](Manufacturing_Assets/Empty%20Queryset.png)
 
@@ -591,7 +591,7 @@ In this section we will create all the silver tables, functions and enable updat
 
 ### 10. Real-Time Dashboard
 
-In this section, we will build a real-time dashboard to visualize the streaming data and set it to refresh every 30 seconds. 
+In this section, we will build a Real-Time Dashboard to visualize the streaming data and set it to refresh every 30 seconds. 
 
 
 1. Change to the workspace. To do so click on the icon of your workspace on the left pane. In our example the workspace is named **LabUser01** Your workspace name will be different based on your user credentials. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you.
@@ -813,7 +813,7 @@ Rename Page 1 to Production Click on the three dots to rename.
 
 #### OEE Dashboard Finale 
 
-After you added all the visuals and moved them to thier appropiate places your dashboard should look similar to this.
+After you added all the visuals and moved them to their appropiate places your dashboard should look similar to this.
 ![alt text](Manufacturing_Assets/oeedashboard.png)
 
 
@@ -860,7 +860,7 @@ Using the Gold Layer functions, build a Power BI report that shows statistics fr
 
 #### Build Fabric events streaming pipeline
 
-Using the Fabric Events in Real-Time hub, build a pipeline that sends link to the documentation of Real-Time Dashobard when someone tried to create a new Real-Time Dashboard.
+Using the Fabric Events in Real-Time hub, build a pipeline that sends link to the documentation of Real-Time Dashboard when someone tried to create a new Real-Time Dashboard.
 
 #### Alerting directly on Eventstream
 
