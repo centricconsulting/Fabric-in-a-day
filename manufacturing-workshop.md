@@ -29,10 +29,10 @@
   - [6. Define Eventstream topology](#6-define-Eventstream-topology)
   - [7. Setting up the Lakehouse](#7-setting-up-the-Lakehouse)
   - [8. Build the KQL DB schema](#8-build-the-kql-db-schema)
-  - [10. Real-Time Dashboard](#10-real-time-dashboard)
-  - [11. Data Activator](#11-data-activator)
-  - [15. Bonus Challenges](#15-bonus-challenges)
-  - [16. Stop the notebook](#16-stop-the-notebook)
+  - [9. Real-Time Dashboard](#10-real-time-dashboard)
+  - [10. Data Activator](#11-data-activator)
+  - [11. Bonus Challenges](#15-bonus-challenges)
+  - [12. Stop the notebook](#16-stop-the-notebook)
 - [Continue your learning](#continue-your-learning)
 
 
