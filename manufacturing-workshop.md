@@ -1,5 +1,6 @@
 
 ---
+
 published: true                         
 type: workshop                          
 title: Fabric Engineer in a Day        
@@ -12,14 +13,17 @@ authors:
   - Jeff Aalto
   - Thomas Roman
   - Todd Lyman
+
 contacts:                               
   - josh.higginbotham@centricconsulting.com
   - sipi.krishna@centricconsulting.com
   - jeff.aalto@centricconsulting.com
   - tommy.roman@centricconsulting.com
   - todd.lyman@centricconsulting.com
+
 duration_minutes: 480                    
 tags: fabric, rti, dataengineer          
+
 ---
 
 ## Table of Contents
