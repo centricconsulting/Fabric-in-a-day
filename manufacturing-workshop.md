@@ -469,7 +469,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
    | **Eventstream Name**                  |downtimereasonhistory_es|
    | **Connection**                        | Ensure that **litmus-downtime-reasons** option is selected.    |
    | **Event processing before ingestion** | Ensure that this option is selected.  |  
-   | **Destionation name**           | `downtime-reasons-destination` |
+   | **Destination name**           | `downtime-reasons-destination` |
    | **Workspace**                   | **Workspace Name assigned by Trainer**       |
    | **KQL Database**                | **OEE_EH**          |
    | **KQL Destination table**       | `bronze_downtimereasonhistory`             |
@@ -482,7 +482,7 @@ Next we have to create the Eventstream topology that will insert the streamed da
    | **Eventstream Name**                  |scraphistory_es|
    | **Connection**                        | Ensure that **litmus-scrap-history** option is selected.    |
    | **Event processing before ingestion** | Ensure that this option is selected.  |  
-   | **Destionation name**           | `scrap-history-destination` |
+   | **Destination name**           | `scrap-history-destination` |
    | **Workspace**                   | **Workspace Name assigned by Trainer**       |
    | **KQL Database**                | **OEE_EH**          |
    | **KQL Destination table**       | `bronze_scraphistory`             |
@@ -518,7 +518,7 @@ In this task we will set up the Lakehouse that will contain additional informati
 
 3. In the dialog **New Lakehouse** enter `OEE_LH` as name for the new Lakehouse. Ensure that the checkbox **Lakehouse Schemas (Public Preview)** is not checked. Then click on the button **Create**
 
-   ![alt text](Manufacturing_Assets/New%20lakehouse.png)
+   ![alt text](Manufacturing_Assets/New%20Lakehouse.png)
 
 4. We then create two notebooks that will be used to bring in reference data to enrich our streaming data.  To make this easier, we've uploaded these notebooks to the repo for you to import.  Go to the GitHub repo and download the notebooks **common_functions.ipynb** and **Load_reference_data.ipynb** under the notebook folder.
 
