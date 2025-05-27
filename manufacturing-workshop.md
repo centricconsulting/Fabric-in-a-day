@@ -12,11 +12,11 @@ authors:
   - Thomas Roman
   - Todd Lyman
 contacts:                               
-  - josh.higginbotham@centricconsulting.com
-  - sipi.krishna@centricconsulting.com
-  - jeff.aalto@centricconsulting.com
-  - tommy.roman@centricconsulting.com
-  - todd.lyman@centricconsulting.com
+  - 'josh.higginbotham@centricconsulting.com'
+  - 'sipi.krishna@centricconsulting.com'
+  - 'jeff.aalto@centricconsulting.com'
+  - 'tommy.roman@centricconsulting.com'
+  - 'todd.lyman@centricconsulting.com'
 duration_minutes: 480                    
 tags: fabric, rti, dataengineer, data, analytics, Microsoft Fabric, Power BI, data science, data engineering, data visualization
 sections_title:
